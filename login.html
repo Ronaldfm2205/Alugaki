@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar — ALUGAKI</title>
+  <meta name="description" content="Faça login ou crie sua conta na ALUGAKI. Marketplace de aluguéis confiáveis entre pessoas.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="login-page">
+    <!-- ============================================
+         HERO SIDE (Left)
+         ============================================ -->
+    <div class="login-hero">
+      <div class="login-hero-bg">
+        <img src="assets/images/login_hero.png" alt="Comunidade ALUGAKI" loading="eager">
+      </div>
+      <div class="login-hero-content">
+        <h1 class="login-hero-title">Alugue Qualquer Coisa, Em Qualquer Lugar.</h1>
+        <p class="login-hero-text">
+          Junte-se ao marketplace líder para aluguéis confiáveis entre pessoas. De ferramentas elétricas a câmeras premium, a ALUGAKI cuida da confiança para você focar no seu projeto.
+        </p>
+        <div class="login-hero-badges">
+          <div class="login-hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Usuários Verificados</span>
+          </div>
+          <div class="login-hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Pagamentos Seguros</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         FORM SIDE (Right)
+         ============================================ -->
+    <div class="login-form-side">
+      <div class="login-brand">ALUGAKI</div>
+      <h2 class="login-subtitle">Bem-vindo de volta à confiança.</h2>
+
+      <!-- Tabs -->
+      <div class="login-tabs" id="login-tabs">
+        <button class="login-tab active" data-tab="entrar" id="tab-entrar">Entrar</button>
+        <button class="login-tab" data-tab="criar-conta" id="tab-criar-conta">Criar Conta</button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="login-form login-form-container" id="form-login" novalidate>
+        <div class="input-group">
+          <label class="input-label" for="login-email">ENDEREÇO DE E-MAIL</label>
+          <input type="email" class="input-field" id="login-email" placeholder="nome@empresa.com" required>
+        </div>
+
+        <div class="input-group">
+          <div class="forgot-password-row">
+            <label class="input-label" for="login-password">SENHA</label>
+            <a href="#" class="forgot-password">Esqueceu a senha?</a>
+          </div>
+          <input type="password" class="input-field" id="login-password" placeholder="••••••••" required>
+        </div>
+
+        <div class="login-submit">
+          <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+        </div>
+      </form>
+
+      <!-- Register Form (hidden by default) -->
+      <form class="login-form register-form" id="form-register" novalidate>
+        <div class="input-group">
+          <label class="input-label" for="register-name">NOME COMPLETO</label>
+          <input type="text" class="input-field" id="register-name" placeholder="Seu nome completo" required>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="register-email">ENDEREÇO DE E-MAIL</label>
+          <input type="email" class="input-field" id="register-email" placeholder="nome@empresa.com" required>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="register-password">SENHA</label>
+          <input type="password" class="input-field" id="register-password" placeholder="Mínimo 8 caracteres" required minlength="8">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="register-password-confirm">CONFIRMAR SENHA</label>
+          <input type="password" class="input-field" id="register-password-confirm" placeholder="Repita sua senha" required>
+        </div>
+
+        <div class="login-submit">
+          <button type="submit" class="btn btn-primary btn-full">Criar Conta</button>
+        </div>
+      </form>
+
+      <!-- Social Divider -->
+      <div class="login-divider">
+        <span>OU CONTINUE COM</span>
+      </div>
+
+      <!-- Social Buttons -->
+      <div class="social-buttons">
+        <button class="social-btn" id="btn-google">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google
+        </button>
+        <button class="social-btn" id="btn-apple">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          Apple
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <div class="login-footer">
+        <p>© 2024 ALUGAKI. Aluguéis confiáveis para todos.</p>
+        <div class="login-footer-links">
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Serviço</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

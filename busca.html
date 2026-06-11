@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Busca de Itens — ALUGAKI</title>
+  <meta name="description" content="Encontre itens para alugar perto de você. Ferramentas, eletrônicos, equipamentos esportivos e mais.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/busca.css">
+</head>
+<body>
+  <!-- ============================================
+       HEADER (with inline search)
+       ============================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+
+      <div class="header-search" id="header-search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Ferramentas" id="search-input" value="Ferramentas">
+      </div>
+
+      <nav class="header-nav" id="main-nav">
+        <a href="busca.html" class="active">Navegar</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="busca.html">Anunciar Item</a>
+      </nav>
+
+      <div class="header-icons">
+        <button class="header-icon-btn" id="btn-favorites" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="header-icon-btn" id="btn-notifications" aria-label="Notificações">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Entrar</a>
+        <a href="login.html#criar-conta" class="btn btn-primary btn-sm">Criar conta</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="busca-layout">
+        <!-- ============================================
+             SIDEBAR FILTERS
+             ============================================ -->
+        <aside class="filters-sidebar" id="filters-sidebar">
+          <div class="filters-header">
+            <h2>Filtros</h2>
+            <button id="btn-clear-filters">Limpar tudo</button>
+          </div>
+
+          <!-- Categoria -->
+          <div class="filter-group">
+            <h3 class="filter-group-title">Categoria</h3>
+            <label class="filter-checkbox">
+              <input type="checkbox" name="categoria" value="ferramentas" checked>
+              Ferramentas
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" name="categoria" value="eletrodomesticos">
+              Eletrodomésticos
+            </label>
+            <label class="filter-checkbox">
+              <input type="checkbox" name="categoria" value="jardinagem">
+              Jardinagem
+            </label>
+          </div>
+
+          <!-- Preço por dia -->
+          <div class="filter-group">
+            <h3 class="filter-group-title">Preço por dia (R$)</h3>
+            <div class="filter-range">
+              <input type="range" id="price-min" min="0" max="200" value="0" step="5">
+              <input type="range" id="price-max" min="0" max="200" value="200" step="5">
+            </div>
+            <div class="filter-range-labels">
+              <span>R$ 0</span>
+              <span>R$ 200+</span>
+            </div>
+          </div>
+
+          <!-- Distância -->
+          <div class="filter-group">
+            <h3 class="filter-group-title">Distância (km)</h3>
+            <select class="filter-select" id="filter-distance">
+              <option value="5">Até 5 km</option>
+              <option value="10">Até 10 km</option>
+              <option value="15" selected>Até 15 km</option>
+              <option value="30">Até 30 km</option>
+              <option value="50">Até 50 km</option>
+            </select>
+          </div>
+
+          <!-- Estado -->
+          <div class="filter-group">
+            <h3 class="filter-group-title">Estado</h3>
+            <div class="filter-chips">
+              <button class="chip active" data-state="como-novo">Como novo</button>
+              <button class="chip" data-state="bom">Bom</button>
+              <button class="chip" data-state="usado">Usado</button>
+            </div>
+          </div>
+
+          <!-- Trust Badge -->
+          <div class="sidebar-trust-badge">
+            <div class="trust-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <h4>Aluguel Seguro</h4>
+              <p>Todos os itens possuem seguro incluso.</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ============================================
+             SEARCH RESULTS
+             ============================================ -->
+        <section class="results-content" id="results-content">
+          <div class="results-header">
+            <div class="results-title">
+              <h1>Resultados para "Ferramentas"</h1>
+              <p>248 itens encontrados perto de São Paulo</p>
+            </div>
+            <div class="results-sort">
+              <label for="sort-select">Ordenar por:</label>
+              <select id="sort-select">
+                <option value="recent">Mais recentes</option>
+                <option value="price-asc">Menor preço</option>
+                <option value="price-desc">Maior preço</option>
+                <option value="rating">Melhor avaliação</option>
+                <option value="distance">Mais perto</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="results-grid" id="results-grid">
+            <!-- Card 1: Furadeira de Impacto -->
+            <article class="card-product" id="result-1">
+              <a href="produto.html?id=3">
+                <div class="card-product-image">
+                  <img src="assets/images/furadeira_bosch.png" alt="Furadeira de Impacto Bosch 18V" loading="lazy">
+                  <div class="card-product-rating">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.9 (12)
+                  </div>
+                  <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                </div>
+              </a>
+              <div class="card-product-body">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <h3 class="card-product-title" style="margin-bottom:0">Furadeira de Impacto Bosch 18V</h3>
+                  <span class="badge-pro" style="padding:3px 8px;border-radius:var(--rounded-full);font-size:10px;font-weight:700;background:var(--primary-container);color:var(--on-primary);">PRO</span>
+                </div>
+                <div class="card-product-location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Pinheiros, São Paulo (2.4 km)
+                </div>
+                <div class="card-product-footer">
+                  <div class="card-product-price">
+                    <span class="card-product-price-label">Por dia</span>
+                    <span class="card-product-price-value">R$ 12</span>
+                  </div>
+                  <a href="produto.html?id=3" class="btn btn-primary btn-sm">Reservar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Serra Circular -->
+            <article class="card-product" id="result-2">
+              <a href="produto.html?id=5">
+                <div class="card-product-image">
+                  <img src="assets/images/serra_circular.png" alt="Serra Circular Makita HS7601" loading="lazy">
+                  <div class="card-product-rating">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.7 (8)
+                  </div>
+                  <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                </div>
+              </a>
+              <div class="card-product-body">
+                <h3 class="card-product-title">Serra Circular Makita HS7601</h3>
+                <div class="card-product-location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Vila Mariana, São Paulo (4.8 km)
+                </div>
+                <div class="card-product-footer">
+                  <div class="card-product-price">
+                    <span class="card-product-price-label">Por dia</span>
+                    <span class="card-product-price-value">R$ 18</span>
+                  </div>
+                  <a href="produto.html?id=5" class="btn btn-primary btn-sm">Reservar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Kit Ferramentas -->
+            <article class="card-product" id="result-3">
+              <a href="produto.html?id=6">
+                <div class="card-product-image">
+                  <img src="assets/images/kit_ferramentas.png" alt="Kit de Ferramentas Mecânico" loading="lazy">
+                  <div class="card-product-rating">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    5.0 (5)
+                  </div>
+                  <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                </div>
+              </a>
+              <div class="card-product-body">
+                <h3 class="card-product-title">Kit de Ferramentas Mecânico</h3>
+                <div class="card-product-location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Itaim Bibi (8.1 km)
+                </div>
+                <div class="card-product-footer">
+                  <div class="card-product-price">
+                    <span class="card-product-price-label">Por dia</span>
+                    <span class="card-product-price-value">R$ 15</span>
+                  </div>
+                  <a href="produto.html?id=6" class="btn btn-primary btn-sm">Reservar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Escada Telescópica -->
+            <article class="card-product" id="result-4">
+              <a href="produto.html?id=7">
+                <div class="card-product-image">
+                  <img src="assets/images/escada_telescopica.png" alt="Escada Telescópica 4m" loading="lazy">
+                  <div class="card-product-rating">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.5 (3)
+                  </div>
+                  <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                </div>
+              </a>
+              <div class="card-product-body">
+                <h3 class="card-product-title">Escada Telescópica 4m</h3>
+                <div class="card-product-location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Mooca, São Paulo (6.2 km)
+                </div>
+                <div class="card-product-footer">
+                  <div class="card-product-price">
+                    <span class="card-product-price-label">Por dia</span>
+                    <span class="card-product-price-value">R$ 10</span>
+                  </div>
+                  <a href="produto.html?id=7" class="btn btn-primary btn-sm">Reservar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: Lavadora de Pressão -->
+            <article class="card-product" id="result-5">
+              <a href="produto.html?id=8">
+                <div class="card-product-image">
+                  <img src="assets/images/lavadora_pressao.png" alt="Lavadora de Pressão Kärcher K4" loading="lazy">
+                  <div class="card-product-rating">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.8 (15)
+                  </div>
+                  <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                </div>
+              </a>
+              <div class="card-product-body">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                  <h3 class="card-product-title" style="margin-bottom:0">Lavadora de Pressão Kärcher K4</h3>
+                  <span style="padding:3px 8px;border-radius:var(--rounded-full);font-size:10px;font-weight:700;background:var(--tertiary-container);color:var(--on-tertiary-container);text-transform:uppercase;">DESTAQUE</span>
+                </div>
+                <div class="card-product-location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Barueri (22 km)
+                </div>
+                <div class="card-product-footer">
+                  <div class="card-product-price">
+                    <span class="card-product-price-label">Por dia</span>
+                    <span class="card-product-price-value">R$ 25</span>
+                  </div>
+                  <a href="produto.html?id=8" class="btn btn-primary btn-sm">Reservar</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Lixadeira Orbital -->
+            <article class="card-product" id="result-6">
+              <a href="produto.html?id=9">
+                <div class="card-product-image">
+                  <img src="assets/images/lixadeira_orbital.png" alt="Lixadeira Orbital Dewalt" loading="lazy">
+                  <div class="card-product-rating">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    4.6 (6)
+                  </div>
+                  <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </button>
+                </div>
+              </a>
+              <div class="card-product-body">
+                <h3 class="card-product-title">Lixadeira Orbital Dewalt</h3>
+                <div class="card-product-location">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Osasco (10.5 km)
+                </div>
+                <div class="card-product-footer">
+                  <div class="card-product-price">
+                    <span class="card-product-price-label">Por dia</span>
+                    <span class="card-product-price-value">R$ 8</span>
+                  </div>
+                  <a href="produto.html?id=9" class="btn btn-primary btn-sm">Reservar</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Pagination -->
+          <nav class="pagination" id="pagination" aria-label="Paginação de resultados">
+            <button class="pagination-btn" disabled aria-label="Página anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <span class="pagination-ellipsis">...</span>
+            <button class="pagination-btn">12</button>
+            <button class="pagination-btn" aria-label="Próxima página">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </nav>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ALUGAKI</span>
+        <span class="footer-copyright">© 2024 ALUGAKI. Aluguéis confiáveis para todos.</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+        <a href="#">Seguro</a>
+        <a href="#">Confiança e Segurança</a>
+        <a href="#">Suporte</a>
+      </nav>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/busca.js"></script>
+</body>
+</html>

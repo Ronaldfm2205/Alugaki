@@ -1,0 +1,401 @@
+/* ============================================
+   ALUGAKI — Checkout Page Styles
+   ============================================ */
+
+/* ── Checkout Header ── */
+.checkout-header {
+  background: var(--surface-container-lowest);
+  border-bottom: 1px solid var(--border-input);
+  padding: 0;
+}
+
+.checkout-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.checkout-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.checkout-back {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rounded-full);
+  transition: background var(--transition-fast);
+  color: var(--on-surface);
+}
+
+.checkout-back:hover {
+  background: var(--surface-container);
+}
+
+.checkout-back svg {
+  width: 20px;
+  height: 20px;
+}
+
+.checkout-header-logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.checkout-secure {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--on-surface);
+}
+
+.checkout-secure svg {
+  width: 18px;
+  height: 18px;
+  color: var(--on-surface-variant);
+}
+
+/* ── Checkout Layout ── */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 40px;
+  padding: 40px 0 64px;
+  min-height: calc(100vh - 64px - 100px);
+}
+
+/* ── Payment Section ── */
+.payment-section {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--border-input);
+  border-radius: var(--rounded-lg);
+  padding: 32px;
+}
+
+.payment-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 24px;
+}
+
+/* ── Payment Method (Credit Card) ── */
+.payment-method {
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--rounded);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.payment-method.active {
+  border-color: var(--primary-container);
+}
+
+.payment-method-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  cursor: pointer;
+}
+
+.payment-method-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.payment-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition-fast);
+}
+
+.payment-method.active .payment-radio {
+  border-color: var(--primary-container);
+}
+
+.payment-radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-container);
+  transform: scale(0);
+  transition: transform var(--transition-fast);
+}
+
+.payment-method.active .payment-radio-dot {
+  transform: scale(1);
+}
+
+.payment-method-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.payment-method-icon svg {
+  width: 24px;
+  height: 24px;
+  color: var(--on-surface-variant);
+}
+
+/* ── Card Form Fields ── */
+.payment-card-form {
+  padding: 0 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── PIX Method ── */
+.payment-pix {
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--rounded);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.payment-pix:hover {
+  border-color: var(--outline-variant);
+}
+
+.payment-pix-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.payment-pix-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.payment-pix-info p {
+  font-size: 13px;
+  color: var(--outline);
+}
+
+.pix-qr svg {
+  width: 32px;
+  height: 32px;
+  color: var(--on-surface-variant);
+}
+
+/* ── Order Summary ── */
+.order-summary {
+  position: sticky;
+  top: 96px;
+  align-self: flex-start;
+}
+
+.summary-card {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--border-input);
+  border-radius: var(--rounded-lg);
+  padding: 32px;
+}
+
+.summary-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 20px;
+}
+
+/* ── Product Summary Row ── */
+.summary-product {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--surface-container-low);
+  border-radius: var(--rounded);
+  margin-bottom: 24px;
+}
+
+.summary-product-image {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--rounded);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.summary-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.summary-product-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.summary-product-category {
+  font-size: 13px;
+  color: var(--outline);
+}
+
+/* ── Summary Rows ── */
+.summary-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.summary-row-label {
+  color: var(--on-surface-variant);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.summary-row-label svg {
+  width: 14px;
+  height: 14px;
+  color: var(--outline);
+}
+
+.summary-row-value {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.summary-row-value.protection {
+  color: var(--secondary);
+}
+
+/* ── Total ── */
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-input);
+  margin-bottom: 24px;
+}
+
+.summary-total-label {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.summary-total-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-container);
+}
+
+/* ── Finalize Button ── */
+.summary-cta .btn {
+  padding: 16px;
+  font-size: 16px;
+  border-radius: var(--rounded-md);
+  gap: 10px;
+}
+
+.summary-cta .btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.summary-legal {
+  text-align: center;
+  font-size: 12px;
+  color: var(--outline);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+.summary-legal a {
+  color: var(--primary-container);
+  text-decoration: underline;
+}
+
+/* ── Checkout Trust Badges ── */
+.checkout-trust-badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.checkout-trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--surface-container-low);
+  border: 1px solid var(--border-input);
+  border-radius: var(--rounded-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--on-surface-variant);
+}
+
+.checkout-trust-badge svg {
+  width: 16px;
+  height: 16px;
+  color: var(--primary-container);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .order-summary {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .payment-section {
+    padding: 24px 20px;
+  }
+
+  .summary-card {
+    padding: 24px 20px;
+  }
+}

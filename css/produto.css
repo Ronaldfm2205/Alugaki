@@ -1,0 +1,628 @@
+/* ============================================
+   ALUGAKI — Produto / Product Detail Page Styles
+   ============================================ */
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 0;
+  font-size: 13px;
+  color: var(--outline);
+}
+
+.breadcrumb a {
+  color: var(--outline);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-container);
+}
+
+.breadcrumb .breadcrumb-current {
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.breadcrumb-separator {
+  color: var(--outline-variant);
+}
+
+/* ── Product Layout ── */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  padding-bottom: 48px;
+}
+
+/* ── Gallery ── */
+.product-gallery {
+  position: relative;
+}
+
+.gallery-main {
+  position: relative;
+  border-radius: var(--rounded-md);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--surface-container);
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-main .gallery-favorite {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--outline);
+  transition: all var(--transition-fast);
+  border: none;
+}
+
+.gallery-main .gallery-favorite:hover {
+  color: var(--error);
+  transform: scale(1.1);
+}
+
+.gallery-main .gallery-favorite svg {
+  width: 20px;
+  height: 20px;
+}
+
+.gallery-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.gallery-thumb {
+  border-radius: var(--rounded-md);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color var(--transition-fast), opacity var(--transition-fast);
+  position: relative;
+}
+
+.gallery-thumb:hover {
+  border-color: var(--primary-container);
+}
+
+.gallery-thumb.active {
+  border-color: var(--primary-container);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumb-more {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ── Booking Panel ── */
+.booking-panel {
+  position: sticky;
+  top: 96px;
+  align-self: flex-start;
+}
+
+.product-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--on-surface);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.product-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--outline);
+}
+
+.product-meta .rating-badge {
+  font-size: 13px;
+}
+
+/* ── Price Tabs ── */
+.price-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.price-tab {
+  padding: 16px;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--rounded-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--surface-container-lowest);
+}
+
+.price-tab.active {
+  border-color: var(--primary-container);
+}
+
+.price-tab.weekly {
+  background: var(--primary-container);
+  border-color: var(--primary-container);
+}
+
+.price-tab.weekly .price-tab-label,
+.price-tab.weekly .price-tab-value {
+  color: #fff;
+}
+
+.price-tab-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--outline);
+  margin-bottom: 4px;
+}
+
+.price-tab-discount {
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.15);
+  padding: 2px 6px;
+  border-radius: var(--rounded-sm);
+  margin-left: 4px;
+}
+
+.price-tab-value {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--on-surface);
+}
+
+/* ── Period Selector ── */
+.period-selector {
+  margin-bottom: 16px;
+}
+
+.period-selector-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-bottom: 12px;
+}
+
+.period-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border-light);
+  border-radius: var(--rounded);
+  overflow: hidden;
+}
+
+.period-date {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.period-date:first-child {
+  border-right: 1px solid var(--border-light);
+}
+
+.period-date-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--outline);
+  margin-bottom: 4px;
+}
+
+.period-date-value {
+  font-size: 14px;
+  color: var(--on-surface);
+}
+
+/* ── Calendar ── */
+.calendar-widget {
+  border: 1px solid var(--border-light);
+  border-radius: var(--rounded);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.calendar-header h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.calendar-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.calendar-nav button {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rounded-sm);
+  color: var(--outline);
+  transition: all var(--transition-fast);
+}
+
+.calendar-nav button:hover {
+  background: var(--surface-container);
+  color: var(--on-surface);
+}
+
+.calendar-nav button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.calendar-day-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--outline);
+  padding: 4px;
+}
+
+.calendar-day {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin: 0 auto;
+  color: var(--on-surface);
+}
+
+.calendar-day:hover {
+  background: var(--surface-container);
+}
+
+.calendar-day.disabled {
+  color: var(--outline-variant);
+  cursor: default;
+}
+
+.calendar-day.disabled:hover {
+  background: none;
+}
+
+.calendar-day.selected {
+  background: var(--primary-container);
+  color: #fff;
+}
+
+.calendar-day.in-range {
+  background: var(--primary-fixed);
+  color: var(--primary-container);
+  border-radius: 0;
+}
+
+/* ── CTA Button ── */
+.booking-cta {
+  margin-bottom: 12px;
+}
+
+.booking-cta .btn {
+  padding: 16px;
+  font-size: 17px;
+  border-radius: var(--rounded-md);
+}
+
+.booking-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--outline);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+/* ── Trust Cards ── */
+.booking-trust {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.booking-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--surface-container-low);
+  border-radius: var(--rounded);
+}
+
+.booking-trust-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-container);
+  flex-shrink: 0;
+}
+
+.booking-trust-item h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.booking-trust-item p {
+  font-size: 12px;
+  color: var(--outline);
+}
+
+/* ── Description Section ── */
+.product-description {
+  margin-top: 40px;
+  grid-column: 1 / -1;
+}
+
+.product-description-layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+}
+
+.description-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-bottom: 16px;
+}
+
+.description-text {
+  font-size: 15px;
+  color: var(--on-surface-variant);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+/* ── Specs ── */
+.specs-section {
+  padding: 32px 0;
+  border-top: 1px solid var(--border-input);
+}
+
+.specs-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.specs-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--on-surface);
+  margin-bottom: 16px;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.spec-row-label {
+  color: var(--outline);
+}
+
+.spec-row-value {
+  font-weight: 600;
+  color: var(--on-surface);
+  text-align: right;
+}
+
+.includes-list {
+  list-style: none;
+}
+
+.includes-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--on-surface-variant);
+}
+
+.includes-list li svg {
+  width: 16px;
+  height: 16px;
+  color: var(--primary-container);
+  flex-shrink: 0;
+}
+
+/* ── Owner Profile ── */
+.owner-section {
+  padding: 32px 0;
+  border-top: 1px solid var(--border-input);
+}
+
+.owner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.owner-header h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.owner-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--outline);
+}
+
+.owner-rating svg {
+  width: 18px;
+  height: 18px;
+  color: var(--tertiary-container);
+}
+
+.owner-rating strong {
+  color: var(--on-surface);
+  font-weight: 700;
+}
+
+.owner-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--surface-container-low);
+  border-radius: var(--rounded-lg);
+}
+
+.owner-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--surface-container-high);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-container);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.owner-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.owner-info {
+  flex: 1;
+}
+
+.owner-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--on-surface);
+}
+
+.owner-since {
+  font-size: 13px;
+  color: var(--outline);
+  margin-bottom: 8px;
+}
+
+.owner-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.owner-badge {
+  padding: 3px 10px;
+  border-radius: var(--rounded-sm);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--surface-container);
+  color: var(--on-surface-variant);
+}
+
+.owner-actions {
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .product-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .product-description-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .booking-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-title {
+    font-size: 22px;
+  }
+
+  .specs-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

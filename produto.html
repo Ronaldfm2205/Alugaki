@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furadeira Bosch Professional — ALUGAKI</title>
+  <meta name="description" content="Alugue a Furadeira de Impacto Bosch GSB 13 RE Professional. A mais potente e compacta da sua classe, com motor de 650W.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/produto.css">
+</head>
+<body>
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+      <nav class="header-nav" id="main-nav">
+        <a href="busca.html">Explorar</a>
+        <a href="index.html#como-funciona">Como Funciona</a>
+        <a href="busca.html">Anunciar Item</a>
+      </nav>
+      <div class="header-icons">
+        <button class="header-icon-btn" id="btn-favorites" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="header-icon-btn" id="btn-notifications" aria-label="Notificações">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notification-dot"></span>
+        </button>
+      </div>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-secondary btn-sm">Entrar</a>
+        <a href="login.html#criar-conta" class="btn btn-primary btn-sm">Cadastrar</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- ============================================
+           BREADCRUMB
+           ============================================ -->
+      <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Início</a>
+        <span class="breadcrumb-separator">/</span>
+        <a href="busca.html?categoria=ferramentas">Ferramentas</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Furadeiras</span>
+      </nav>
+
+      <!-- ============================================
+           PRODUCT LAYOUT
+           ============================================ -->
+      <div class="product-layout">
+        <!-- Gallery -->
+        <div class="product-gallery" id="product-gallery">
+          <div class="gallery-main">
+            <img src="assets/images/furadeira_bosch.png" alt="Furadeira Bosch Professional" id="gallery-main-img">
+            <button class="gallery-favorite" id="btn-favorite-product" aria-label="Adicionar aos favoritos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="gallery-thumbnails">
+            <div class="gallery-thumb active" data-index="0">
+              <img src="assets/images/furadeira_bosch.png" alt="Furadeira vista frontal">
+            </div>
+            <div class="gallery-thumb" data-index="1">
+              <img src="assets/images/furadeira_bosch.png" alt="Furadeira vista lateral">
+            </div>
+            <div class="gallery-thumb" data-index="2">
+              <img src="assets/images/furadeira_bosch.png" alt="Furadeira com acessórios">
+            </div>
+            <div class="gallery-thumb" data-index="3">
+              <img src="assets/images/furadeira_bosch.png" alt="Mais fotos">
+              <div class="gallery-thumb-more">+12 Fotos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Panel -->
+        <div class="booking-panel" id="booking-panel">
+          <h1 class="product-title">Furadeira Bosch Professional</h1>
+          <div class="product-meta">
+            <span class="rating-badge">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              4.8
+            </span>
+            <span>• 42 Locações realizadas</span>
+          </div>
+
+          <!-- Price Tabs -->
+          <div class="price-tabs" id="price-tabs">
+            <div class="price-tab active" data-period="daily">
+              <div class="price-tab-label">POR DIA</div>
+              <div class="price-tab-value">R$ 45,00</div>
+            </div>
+            <div class="price-tab weekly" data-period="weekly">
+              <div class="price-tab-label">POR SEMANA <span class="price-tab-discount">-15%</span></div>
+              <div class="price-tab-value">R$ 268,00</div>
+            </div>
+          </div>
+
+          <!-- Period Selector -->
+          <div class="period-selector">
+            <div class="period-selector-label">Selecione o Período</div>
+            <div class="period-dates" id="period-dates">
+              <div class="period-date">
+                <div class="period-date-label">RETIRADA</div>
+                <div class="period-date-value" id="pickup-date">Escolher data</div>
+              </div>
+              <div class="period-date">
+                <div class="period-date-label">DEVOLUÇÃO</div>
+                <div class="period-date-value" id="return-date">Escolher data</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calendar Widget -->
+          <div class="calendar-widget" id="calendar-widget">
+            <div class="calendar-header">
+              <h4 id="calendar-month-year">Outubro 2024</h4>
+              <div class="calendar-nav">
+                <button id="cal-prev" aria-label="Mês anterior">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button id="cal-next" aria-label="Próximo mês">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+              <span class="calendar-day-name">D</span>
+              <span class="calendar-day-name">S</span>
+              <span class="calendar-day-name">T</span>
+              <span class="calendar-day-name">Q</span>
+              <span class="calendar-day-name">Q</span>
+              <span class="calendar-day-name">S</span>
+              <span class="calendar-day-name">S</span>
+              <!-- Row 1 -->
+              <span class="calendar-day disabled">29</span>
+              <span class="calendar-day disabled">30</span>
+              <span class="calendar-day">1</span>
+              <span class="calendar-day">2</span>
+              <span class="calendar-day selected">3</span>
+              <span class="calendar-day selected">4</span>
+              <span class="calendar-day selected">5</span>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="booking-cta">
+            <a href="checkout.html" class="btn btn-primary btn-full btn-lg">Alugar Agora</a>
+          </div>
+          <p class="booking-note">Você não será cobrado ainda. Proteção ALUGAKI inclusa em todos os aluguéis.</p>
+
+          <!-- Trust Items -->
+          <div class="booking-trust">
+            <div class="booking-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div>
+                <h4>Seguro Contra Danos</h4>
+                <p>Proteção total para o dono e locatário.</p>
+              </div>
+            </div>
+            <div class="booking-trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <div>
+                <h4>Suporte 24/7</h4>
+                <p>Estamos aqui para ajudar em qualquer problema.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           DESCRIPTION + TRUST BADGES
+           ============================================ -->
+      <div class="product-description" id="product-description">
+        <div class="product-description-layout">
+          <div>
+            <h2 class="description-title">Descrição do Item</h2>
+            <p class="description-text">
+              A Furadeira de Impacto Bosch GSB 13 RE Professional é a mais potente e compacta da sua classe. Com um motor de 650W, ela é perfeita para perfurações em concreto, madeira e metal com extrema precisão. Ideal para profissionais que buscam performance e durabilidade em seus projetos.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================
+           SPECS + INCLUDES
+           ============================================ -->
+      <section class="specs-section" id="specs-section">
+        <div class="specs-layout">
+          <div>
+            <h3 class="specs-title">Especificações Técnicas</h3>
+            <div class="spec-row">
+              <span class="spec-row-label">Potência:</span>
+              <span class="spec-row-value">650 W</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Velocidade:</span>
+              <span class="spec-row-value">0 – 2800 RPM</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Peso:</span>
+              <span class="spec-row-value">1.8 kg</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-row-label">Mandril:</span>
+              <span class="spec-row-value">1/2" - 13mm</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="specs-title">O que está incluso</h3>
+            <ul class="includes-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Maleta de transporte
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Jogo de 5 brocas
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Limitador de profundidade
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
+           OWNER PROFILE
+           ============================================ -->
+      <section class="owner-section" id="owner-section">
+        <div class="owner-header">
+          <h2>Perfil do Proprietário</h2>
+          <div class="owner-rating">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <strong>4.9</strong> (124 avaliações)
+          </div>
+        </div>
+        <div class="owner-card">
+          <div class="owner-avatar">RM</div>
+          <div class="owner-info">
+            <div class="owner-name">Ricardo M.</div>
+            <div class="owner-since">Membro desde Out 2021</div>
+            <div class="owner-badges">
+              <span class="owner-badge">IDENTIDADE VERIFICADA</span>
+              <span class="owner-badge">SUPER OWNER</span>
+            </div>
+          </div>
+          <div class="owner-actions">
+            <button class="btn btn-secondary btn-sm">Mensagem</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ALUGAKI</span>
+        <span class="footer-copyright">© 2024 ALUGAKI. Aluguéis confiáveis para todos.</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+        <a href="#">Informações de Seguro</a>
+        <a href="#">Confiança e Segurança</a>
+        <a href="#">Suporte</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/produto.js"></script>
+</body>
+</html>

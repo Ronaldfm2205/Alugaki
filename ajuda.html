@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajuda e Suporte — ALUGAKI</title>
+  <meta name="description" content="Central de Ajuda Inteligente ALUGAKI. Fale com nossa IA de suporte.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/ajuda.css">
+</head>
+<body class="help-page">
+  <!-- ============================================
+       HEADER (Simplificado)
+       ============================================ -->
+  <header class="site-header scrolled" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+      <nav class="header-nav">
+        <span class="header-subtitle">Central de Ajuda Inteligente</span>
+      </nav>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-ghost btn-sm">Voltar ao site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="chat-container">
+    <div class="chat-wrapper">
+      
+      <!-- Área das Mensagens -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Mensagem de Boas Vindas (IA) -->
+        <div class="message ai-message">
+          <div class="message-avatar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M4 14a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="8" y1="18" x2="8" y2="18"/><line x1="16" y1="18" x2="16" y2="18"/></svg>
+          </div>
+          <div class="message-bubble">
+            <p>Olá! Sou a Assistente Virtual da ALUGAKI. 😊</p>
+            <p>Como posso te ajudar hoje? Você pode me perguntar sobre:</p>
+            <ul>
+              <li>Como funciona o seguro contra danos</li>
+              <li>Como cadastrar um produto</li>
+              <li>Dúvidas sobre pagamento</li>
+              <li>Problemas com uma reserva</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sugestões Rápidas -->
+      <div class="chat-suggestions" id="chat-suggestions">
+        <button class="suggestion-chip">Como funciona o seguro?</button>
+        <button class="suggestion-chip">Quero cadastrar um item</button>
+        <button class="suggestion-chip">Problemas de pagamento</button>
+      </div>
+
+      <!-- Área de Input -->
+      <div class="chat-input-area">
+        <form id="chat-form" class="chat-form">
+          <input type="text" id="chat-input" placeholder="Digite sua dúvida aqui..." autocomplete="off">
+          <button type="submit" id="chat-submit" aria-label="Enviar mensagem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+        <div class="chat-footer">Respostas geradas por IA. Pode haver imprecisões.</div>
+      </div>
+      
+    </div>
+  </main>
+
+  <script src="js/ajuda.js"></script>
+</body>
+</html>

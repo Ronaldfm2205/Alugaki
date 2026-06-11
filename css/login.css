@@ -1,0 +1,336 @@
+/* ============================================
+   ALUGAKI — Login / Criar Conta Page Styles
+   ============================================ */
+
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ── Hero Side (Left) ── */
+.login-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px;
+  overflow: hidden;
+}
+
+.login-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.login-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(46, 0, 82, 0.4) 0%,
+    rgba(75, 0, 130, 0.75) 70%,
+    rgba(46, 0, 82, 0.9) 100%
+  );
+}
+
+.login-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.login-hero-title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.login-hero-text {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+
+.login-hero-badges {
+  display: flex;
+  gap: 16px;
+}
+
+.login-hero-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--rounded-lg);
+  min-width: 140px;
+  text-align: center;
+}
+
+.login-hero-badge svg {
+  width: 28px;
+  height: 28px;
+  color: #ffffff;
+}
+
+.login-hero-badge span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* ── Form Side (Right) ── */
+.login-form-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 64px;
+  background: var(--surface-container-lowest);
+}
+
+.login-brand {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--on-surface);
+  margin-bottom: 32px;
+}
+
+/* ── Tabs ── */
+.login-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--border-input);
+  margin-bottom: 32px;
+}
+
+.login-tab {
+  flex: 1;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--outline);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+  background: none;
+  border: none;
+}
+
+.login-tab:hover {
+  color: var(--on-surface);
+}
+
+.login-tab.active {
+  color: var(--primary-container);
+}
+
+.login-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-container);
+}
+
+/* ── Form ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-form .input-group {
+  gap: 8px;
+}
+
+.login-form .input-label {
+  font-size: 11px;
+}
+
+.forgot-password-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forgot-password-row .input-label {
+  margin: 0;
+}
+
+.forgot-password {
+  font-size: 13px;
+  color: var(--primary-container);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.forgot-password:hover {
+  color: var(--secondary);
+}
+
+.login-submit {
+  margin-top: 4px;
+}
+
+.login-submit .btn {
+  padding: 14px;
+  font-size: 16px;
+  border-radius: var(--rounded);
+}
+
+/* ── Social Divider ── */
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-input);
+}
+
+.login-divider span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--outline);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ── Social Buttons ── */
+.social-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--rounded);
+  background: var(--surface-container-lowest);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--on-surface);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+  border-color: var(--outline-variant);
+  background: var(--surface-container-low);
+}
+
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Login Footer ── */
+.login-footer {
+  margin-top: auto;
+  padding-top: 48px;
+  border-top: 1px solid var(--border-input);
+}
+
+.login-footer p {
+  font-size: 13px;
+  color: var(--outline);
+  margin-bottom: 8px;
+}
+
+.login-footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.login-footer-links a {
+  font-size: 13px;
+  color: var(--primary-container);
+  transition: color var(--transition-fast);
+}
+
+.login-footer-links a:hover {
+  color: var(--secondary);
+}
+
+/* ── Register Form (hidden by default) ── */
+.register-form {
+  display: none;
+}
+
+.register-form.active {
+  display: flex;
+}
+
+.login-form-container.hidden {
+  display: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .login-form-side {
+    padding: 40px 32px;
+  }
+
+  .login-hero-title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .login-hero {
+    min-height: 300px;
+    padding: 32px;
+  }
+
+  .login-hero-title {
+    font-size: 28px;
+  }
+
+  .login-form-side {
+    padding: 32px 24px;
+  }
+}

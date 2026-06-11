@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anunciar Item — ALUGAKI</title>
+  <meta name="description" content="Cadastre seu produto e comece a ganhar dinheiro alugando na ALUGAKI.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/anunciar_item.css">
+</head>
+<body>
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="site-header scrolled" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+      <nav class="header-nav" id="main-nav">
+        <a href="busca.html">Explorar</a>
+        <a href="index.html#como-funciona">Como Funciona</a>
+        <a href="anunciar_item.html" class="active">Anunciar Item</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-secondary btn-sm">Entrar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h1>Comece a faturar com seus itens parados</h1>
+          <p>Preencha os dados abaixo para criar o seu anúncio de forma rápida e segura.</p>
+        </div>
+
+        <form id="form-anunciar" class="anunciar-form">
+          <!-- Seção: Informações Básicas -->
+          <fieldset class="form-section">
+            <legend>Informações Básicas</legend>
+            
+            <div class="input-group">
+              <label class="input-label" for="item-title">TÍTULO DO ANÚNCIO</label>
+              <input type="text" class="input-field" id="item-title" placeholder="Ex: Furadeira de Impacto Bosch" required>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label" for="item-category">CATEGORIA</label>
+              <select class="input-field" id="item-category" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option value="ferramentas">Ferramentas</option>
+                <option value="eletronicos">Eletrônicos</option>
+                <option value="esportes">Esportes</option>
+                <option value="festas">Festas</option>
+                <option value="eletrodomesticos">Eletrodomésticos</option>
+                <option value="jardinagem">Jardinagem</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label" for="item-description">DESCRIÇÃO</label>
+              <textarea class="input-field" id="item-description" rows="4" placeholder="Descreva os detalhes do item, estado de conservação, marca, etc." required></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Seção: Preço e Condição -->
+          <fieldset class="form-section">
+            <legend>Preço e Condição</legend>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label class="input-label" for="item-price">PREÇO POR DIA (R$)</label>
+                <input type="number" class="input-field" id="item-price" placeholder="45" min="1" step="1" required>
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="item-condition">ESTADO DO ITEM</label>
+                <select class="input-field" id="item-condition" required>
+                  <option value="como-novo">Como novo</option>
+                  <option value="bom">Em bom estado</option>
+                  <option value="usado">Usado com marcas</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Seção: Fotos -->
+          <fieldset class="form-section">
+            <legend>Fotos do Item</legend>
+            <p class="section-hint">Adicione fotos claras e bem iluminadas para destacar seu anúncio.</p>
+            
+            <div class="photo-upload-container">
+              <label class="photo-upload-box" for="item-photos">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Clique para enviar fotos (PNG, JPG)</span>
+              </label>
+              <input type="file" id="item-photos" accept="image/png, image/jpeg" multiple style="display: none;">
+              
+              <div class="photo-preview-list" id="photo-preview-list">
+                <!-- Previews via JS -->
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Seção: Localização -->
+          <fieldset class="form-section">
+            <legend>Localização de Retirada</legend>
+            <div class="input-group">
+              <label class="input-label" for="item-location">BAIRRO E CIDADE</label>
+              <input type="text" class="input-field" id="item-location" placeholder="Ex: Pinheiros, São Paulo" required>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-submit">Publicar Anúncio</button>
+            <p class="form-terms">Ao publicar, você concorda com os <a href="#">Termos de Uso</a> e <a href="#">Regras da Comunidade</a>.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ALUGAKI</span>
+        <span class="footer-copyright">© 2024 ALUGAKI. Aluguéis confiáveis para todos.</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="ajuda.html">Ajuda e Suporte</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/anunciar_item.js"></script>
+</body>
+</html>

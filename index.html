@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALUGAKI — Aluguéis confiáveis para todos</title>
+  <meta name="description" content="Marketplace de aluguel entre pessoas. Alugue ferramentas, eletrônicos, equipamentos esportivos e mais com segurança e proteção garantida.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+
+      <nav class="header-nav" id="main-nav">
+        <a href="busca.html" class="active">Explorar</a>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="busca.html">Anunciar Item</a>
+      </nav>
+
+      <div class="header-icons">
+        <button class="header-icon-btn" id="btn-favorites" aria-label="Favoritos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="header-icon-btn" id="btn-notifications" aria-label="Notificações">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notification-dot"></span>
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-ghost btn-sm">Entrar</a>
+        <a href="login.html#criar-conta" class="btn btn-primary btn-sm">Cadastrar</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================
+         HERO SECTION
+         ============================================ -->
+    <section class="hero" id="hero">
+      <div class="hero-bg">
+        <img src="assets/images/hero_background.png" alt="Workspace com equipamentos disponíveis para aluguel" loading="eager">
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title">O que você quer alugar hoje?</h1>
+        <form class="hero-search" id="hero-search-form" action="busca.html" method="GET">
+          <div class="hero-search-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <input type="text" name="q" placeholder="Ex: Câmera Canon, Furadeira, Projetor..." id="hero-search-input" autocomplete="off">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================
+         CATEGORIES SECTION
+         ============================================ -->
+    <section class="categories-section" id="categorias">
+      <div class="container">
+        <div class="categories-grid">
+          <a href="busca.html?categoria=ferramentas" class="card-category" id="cat-ferramentas">
+            <div class="card-category-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <span class="card-category-name">Ferramentas</span>
+          </a>
+          <a href="busca.html?categoria=eletronicos" class="card-category" id="cat-eletronicos">
+            <div class="card-category-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="card-category-name">Eletrônicos</span>
+          </a>
+          <a href="busca.html?categoria=festas" class="card-category" id="cat-festas">
+            <div class="card-category-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/></svg>
+            </div>
+            <span class="card-category-name">Festas</span>
+          </a>
+          <a href="busca.html?categoria=esportes" class="card-category" id="cat-esportes">
+            <div class="card-category-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+            </div>
+            <span class="card-category-name">Esportes</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         POPULAR ITEMS SECTION
+         ============================================ -->
+    <section class="popular-section" id="populares">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-header-text">
+            <h2>Populares perto de você</h2>
+            <p>Os itens mais alugados em sua região esta semana.</p>
+          </div>
+          <a href="busca.html" class="section-header-action">
+            Ver tudo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+
+        <div class="popular-grid" id="popular-grid">
+          <!-- Card 1: Câmera Sony -->
+          <article class="card-product" id="product-1">
+            <a href="produto.html?id=1">
+              <div class="card-product-image">
+                <img src="assets/images/camera_sony.png" alt="Câmera Sony Alpha" loading="lazy">
+                <div class="card-product-rating">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  4.9
+                </div>
+                <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </a>
+            <div class="card-product-body">
+              <h3 class="card-product-title">Câmera Sony Alpha</h3>
+              <div class="card-product-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Brooklin, São Paulo
+              </div>
+              <div class="card-product-footer">
+                <div class="card-product-price">
+                  <span class="card-product-price-value">R$ 180 <span>/dia</span></span>
+                </div>
+                <a href="produto.html?id=1" class="btn btn-primary btn-sm">Alugar</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Bicicleta Elétrica -->
+          <article class="card-product" id="product-2">
+            <a href="produto.html?id=2">
+              <div class="card-product-image">
+                <img src="assets/images/bicicleta_eletrica.png" alt="Bicicleta Elétrica" loading="lazy">
+                <div class="card-product-rating">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  4.8
+                </div>
+                <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </a>
+            <div class="card-product-body">
+              <h3 class="card-product-title">Bicicleta Elétrica</h3>
+              <div class="card-product-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Vila Madalena, SP
+              </div>
+              <div class="card-product-footer">
+                <div class="card-product-price">
+                  <span class="card-product-price-value">R$ 95 <span>/dia</span></span>
+                </div>
+                <a href="produto.html?id=2" class="btn btn-primary btn-sm">Alugar</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Kit Furadeira -->
+          <article class="card-product" id="product-3">
+            <a href="produto.html?id=3">
+              <div class="card-product-image">
+                <img src="assets/images/furadeira_bosch.png" alt="Kit Furadeira De Impacto" loading="lazy">
+                <div class="card-product-rating">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  5.0
+                </div>
+                <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </a>
+            <div class="card-product-body">
+              <h3 class="card-product-title">Kit Furadeira De Impacto</h3>
+              <div class="card-product-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Moema, São Paulo
+              </div>
+              <div class="card-product-footer">
+                <div class="card-product-price">
+                  <span class="card-product-price-value">R$ 60 <span>/dia</span></span>
+                </div>
+                <a href="produto.html?id=3" class="btn btn-primary btn-sm">Alugar</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Projetor BenQ -->
+          <article class="card-product" id="product-4">
+            <a href="produto.html?id=4">
+              <div class="card-product-image">
+                <img src="assets/images/projetor_benq.png" alt="Projetor BenQ 4K" loading="lazy">
+                <div class="card-product-rating">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  4.7
+                </div>
+                <button class="card-product-favorite" aria-label="Adicionar aos favoritos">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+            </a>
+            <div class="card-product-body">
+              <h3 class="card-product-title">Projetor BenQ 4K</h3>
+              <div class="card-product-location">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Pinheiros, SP
+              </div>
+              <div class="card-product-footer">
+                <div class="card-product-price">
+                  <span class="card-product-price-value">R$ 120 <span>/dia</span></span>
+                </div>
+                <a href="produto.html?id=4" class="btn btn-primary btn-sm">Alugar</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS SECTION
+         ============================================ -->
+    <section class="how-section" id="como-funciona">
+      <div class="container">
+        <h2 class="how-title">Como funciona</h2>
+        <div class="how-columns">
+          <!-- Column 1: Para quem quer alugar -->
+          <div class="how-column">
+            <div class="how-column-header">
+              <span class="how-column-number">1</span>
+              <h3>Para quem quer alugar</h3>
+            </div>
+            <div class="how-steps">
+              <div class="how-step">
+                <div class="how-step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="how-step-text">
+                  <h4>Encontre o que precisa</h4>
+                  <p>Milhares de itens disponíveis perto de você, prontos para uso.</p>
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="how-step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="how-step-text">
+                  <h4>Reserva Segura</h4>
+                  <p>Pagamento garantido e seguro incluído em todos os aluguéis.</p>
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="how-step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <div class="how-step-text">
+                  <h4>Use e devolva</h4>
+                  <p>Combine a entrega e aproveite. Simples assim.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Para quem quer anunciar -->
+          <div class="how-column">
+            <div class="how-column-header">
+              <span class="how-column-number">2</span>
+              <h3>Para quem quer anunciar</h3>
+            </div>
+            <div class="how-steps">
+              <div class="how-step">
+                <div class="how-step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                </div>
+                <div class="how-step-text">
+                  <h4>Anuncie em minutos</h4>
+                  <p>Tire fotos e defina o seu preço. É totalmente grátis anunciar.</p>
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="how-step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </div>
+                <div class="how-step-text">
+                  <h4>Renda extra passiva</h4>
+                  <p>Faça seus itens trabalharem para você enquanto não os usa.</p>
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="how-step-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="how-step-text">
+                  <h4>Proteção Garantida</h4>
+                  <p>Seus itens estão cobertos pela nossa proteção contra danos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         CTA SECTION
+         ============================================ -->
+    <section class="cta-section" id="cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Pronto para começar a economizar?</h2>
+          <p>Junte-se a milhares de pessoas que estão transformando o consumo em colaboração.</p>
+          <div class="cta-buttons">
+            <a href="busca.html" class="btn btn-secondary btn-lg">Quero Alugar</a>
+            <a href="login.html" class="btn btn-cta-announce btn-lg">Quero Anunciar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ALUGAKI</span>
+        <span class="footer-copyright">© 2024 ALUGAKI. Aluguéis confiáveis para todos.</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Serviço</a>
+        <a href="#">Informações de Seguro</a>
+        <a href="#">Confiança e Segurança</a>
+        <a href="#">Suporte</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
