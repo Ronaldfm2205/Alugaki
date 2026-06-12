@@ -1,0 +1,74 @@
+/* ============================================
+   ALUGAKI — Global Responsiveness
+   ============================================ */
+
+/* Mobile & Tablet Styles */
+@media (max-width: 992px) {
+  /* Hide search bar in header for tablets */
+  .header-search {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Header */
+  .header-inner {
+    padding: 0 16px;
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .header-nav {
+    display: none; /* Hide nav links on mobile for simplicity, or we could add a hamburger menu */
+  }
+  
+  .header-actions {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  /* Footer */
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  
+  .footer-links {
+    justify-content: center;
+  }
+  
+  /* Section Headers */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  /* Trust Badges */
+  .trust-badge {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Typography */
+  h1, .hero-title {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2, .section-header-text h2 {
+    font-size: 24px !important;
+  }
+  
+  /* Container Padding */
+  .container {
+    padding: 0 16px;
+  }
+}

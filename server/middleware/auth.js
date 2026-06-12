@@ -1,7 +1,9 @@
 /* ============================================
    ALUGAKI — Auth Middleware
-   Simple token-based authentication
+   Secure token-based authentication
    ============================================ */
+
+const security = require('../config/security');
 
 function authMiddleware(req, res, next) {
   const authHeader = req.headers.authorization;
@@ -12,15 +14,12 @@ function authMiddleware(req, res, next) {
 
   const token = authHeader.split(' ')[1];
 
-  // Simple mock token validation
-  if (!token.startsWith('mock-token-')) {
-    return res.status(401).json({ error: 'Token inválido' });
+  const userId = security.verifyToken(token);
+  if (!userId) {
+    return res.status(401).json({ error: 'Token inválido ou expirado' });
   }
 
-  // Extract user ID from token
-  const parts = token.split('-');
-  req.userId = parseInt(parts[2]);
-
+  req.userId = userId;
   next();
 }
 

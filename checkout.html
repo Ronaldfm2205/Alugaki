@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout — ALUGAKI</title>
-  <meta name="description" content="Finalize seu aluguel com segurança na ALUGAKI. Pagamento via cartão de crédito ou PIX.">
+  <title>Contato — ALUGAKI</title>
+  <meta name="description" content="Entre em contato com o dono do item e feche seu aluguel de forma segura.">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="bg-light">
   <!-- ============================================
        CHECKOUT HEADER (simplified)
        ============================================ -->
@@ -24,7 +25,7 @@
       </div>
       <div class="checkout-secure">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Pagamento Seguro
+        Aluguel Seguro
       </div>
     </div>
   </header>
@@ -33,132 +34,65 @@
     <div class="container">
       <div class="checkout-layout">
         <!-- ============================================
-             PAYMENT SECTION
+             CONTACT CARD (Lead Gen)
              ============================================ -->
-        <div class="payment-section" id="payment-section">
-          <h1 class="payment-title">Como você quer pagar?</h1>
+        <aside class="contact-card" id="contact-card">
+          
+          <div class="contact-card-header">
+            <h1 class="contact-price-title">
+              <span id="checkout-price-main">R$ 0,00</span><span class="contact-price-period">/dia</span>
+            </h1>
+            <span class="badge-tag">Aluguel</span>
+          </div>
 
-          <!-- Credit Card Method -->
-          <div class="payment-method active" id="method-card">
-            <div class="payment-method-header" data-method="card">
-              <div class="payment-method-header-left">
-                <div class="payment-radio">
-                  <div class="payment-radio-dot"></div>
-                </div>
-                <span class="payment-method-name">Cartão de Crédito</span>
-              </div>
-              <div class="payment-method-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-              </div>
+          <div class="contact-product-info">
+            <h2 id="checkout-item-name" style="font-size: 1.1rem; margin-bottom: 4px;">Carregando...</h2>
+            <div id="checkout-item-category" style="color: var(--text-muted); font-size: 0.9rem;"></div>
+          </div>
+
+          <div class="contact-values-section">
+            <h3 class="contact-section-title">Valores</h3>
+            
+            <div class="contact-value-row">
+              <span class="contact-value-label">Aluguel (1 dia)</span>
+              <span class="contact-value-amount" id="checkout-val-aluguel">R$ 0,00</span>
+            </div>
+            
+            <div class="contact-value-row">
+              <span class="contact-value-label">Taxa de Serviço</span>
+              <span class="contact-value-amount" id="checkout-val-taxa">R$ 0,00</span>
             </div>
 
-            <div class="payment-card-form" id="card-form">
-              <div class="input-group">
-                <label class="input-label" for="card-number">Número do Cartão</label>
-                <input type="text" class="input-field" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric">
-              </div>
-              <div class="card-field-row">
-                <div class="input-group">
-                  <label class="input-label" for="card-expiry">Validade</label>
-                  <input type="text" class="input-field" id="card-expiry" placeholder="MM/AA" maxlength="5" inputmode="numeric">
-                </div>
-                <div class="input-group">
-                  <label class="input-label" for="card-cvv">CVV</label>
-                  <input type="text" class="input-field" id="card-cvv" placeholder="123" maxlength="4" inputmode="numeric">
-                </div>
-              </div>
-              <div class="input-group">
-                <label class="input-label" for="card-name">Nome no Cartão</label>
-                <input type="text" class="input-field" id="card-name" placeholder="Como impresso no cartão">
-              </div>
+            <div class="contact-value-row total-row">
+              <span class="contact-value-label total-label">
+                Valor total previsto
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;margin-left:4px;vertical-align:middle;color:var(--text-muted);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              </span>
+              <span class="contact-value-amount total-amount" id="checkout-val-total">R$ 0,00</span>
             </div>
           </div>
 
-          <!-- PIX Method -->
-          <div class="payment-pix" id="method-pix" data-method="pix">
-            <div class="payment-pix-left">
-              <div class="payment-radio">
-                <div class="payment-radio-dot"></div>
-              </div>
-              <div class="payment-pix-info">
-                <h4>PIX</h4>
-                <p>Aprovação instantânea</p>
-              </div>
+          <div class="contact-phone-section">
+            <div class="phone-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
-            <div class="pix-qr">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="6" height="6"/><rect x="16" y="2" width="6" height="6"/><rect x="2" y="16" width="6" height="6"/><rect x="16" y="16" width="2" height="2"/><rect x="20" y="16" width="2" height="2"/><rect x="16" y="20" width="2" height="2"/><rect x="20" y="20" width="2" height="2"/><line x1="11" y1="2" x2="11" y2="8"/><line x1="14" y1="2" x2="14" y2="5"/><line x1="2" y1="11" x2="5" y2="11"/><line x1="2" y1="14" x2="8" y2="14"/><line x1="11" y1="11" x2="14" y2="11"/><line x1="11" y1="14" x2="11" y2="22"/><line x1="14" y1="14" x2="14" y2="17"/></svg>
-            </div>
-          </div>
-        </div>
-
-        <!-- ============================================
-             ORDER SUMMARY
-             ============================================ -->
-        <aside class="order-summary" id="order-summary">
-          <div class="summary-card">
-            <h2 class="summary-title">Resumo do Aluguel</h2>
-
-            <!-- Product -->
-            <div class="summary-product">
-              <div class="summary-product-image">
-                <img src="assets/images/camera_sony.png" alt="Sony Alpha a7 IV Kit">
-              </div>
-              <div>
-                <div class="summary-product-name">Sony Alpha a7 IV Kit</div>
-                <div class="summary-product-category">Eletrônicos & Câmeras</div>
-              </div>
-            </div>
-
-            <!-- Summary Rows -->
-            <div class="summary-rows">
-              <div class="summary-row">
-                <span class="summary-row-label">Datas</span>
-                <span class="summary-row-value">12 Mai - 15 Mai (3 dias)</span>
-              </div>
-              <div class="summary-row">
-                <span class="summary-row-label">Preço do aluguel</span>
-                <span class="summary-row-value">R$ 450,00</span>
-              </div>
-              <div class="summary-row">
-                <span class="summary-row-label">
-                  Taxa de Proteção
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-                </span>
-                <span class="summary-row-value protection">R$ 45,00</span>
-              </div>
-            </div>
-
-            <!-- Total -->
-            <div class="summary-total">
-              <span class="summary-total-label">Total</span>
-              <span class="summary-total-value">R$ 495,00</span>
-            </div>
-
-            <!-- CTA -->
-            <div class="summary-cta">
-              <button class="btn btn-primary btn-full btn-lg" id="btn-finalize">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                Finalizar Aluguel
-              </button>
-            </div>
-
-            <p class="summary-legal">
-              Ao clicar em "Finalizar", você concorda com os <a href="#">Termos de Uso</a>.
-            </p>
+            <div class="phone-number" id="phone-display">(11) 99999-****</div>
+            <button class="btn-reveal-phone" id="btn-reveal-phone">Exibir telefone</button>
           </div>
 
-          <!-- Trust Badges -->
-          <div class="checkout-trust-badges">
-            <div class="checkout-trust-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Pagamento 100% Seguro
-            </div>
-            <div class="checkout-trust-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Proteção Alugaki Gold
-            </div>
+          <div class="contact-cta">
+            <button class="btn-whatsapp" id="btn-falar-locatario">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;margin-right:8px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              FALAR COM LOCATÁRIO
+            </button>
           </div>
+
+          <p class="contact-legal">
+            Ao ver o número ou enviar uma mensagem, seus dados poderão ser compartilhados com os anunciantes, a fim de personalizar sua experiência de negociação.
+            <a href="#">Saiba mais</a>
+          </p>
         </aside>
+
       </div>
     </div>
   </main>
@@ -170,7 +104,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="footer-logo">ALUGAKI</span>
-        <span class="footer-copyright">© 2024 ALUGAKI. Aluguéis confiáveis para todos.</span>
+        <span class="footer-copyright">© 2026 ALUGAKI. Aluguéis confiáveis para todos.</span>
       </div>
       <nav class="footer-links">
         <a href="#">Política de Privacidade</a>
@@ -182,6 +116,7 @@
     </div>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/app.js"></script>
   <script src="js/checkout.js"></script>
 </body>

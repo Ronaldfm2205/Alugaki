@@ -3,6 +3,13 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Check auth
+  const userJson = localStorage.getItem('alugaki_user');
+  if (!userJson) {
+    window.location.href = 'login.html';
+    return;
+  }
+
   initPhotoUpload();
   initFormSubmit();
 });

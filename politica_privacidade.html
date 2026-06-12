@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade — ALUGAKI</title>
+  <meta name="description" content="Política de Privacidade e Proteção de Dados da ALUGAKI de acordo com a LGPD.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    body {
+      background: var(--surface-dim);
+      color: var(--on-surface);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    .policy-header {
+      padding: 60px 0 30px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--surface-container-low), var(--surface-dim));
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .policy-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    .policy-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+    .policy-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--rounded-2xl);
+      padding: 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+    .policy-section {
+      margin-bottom: 32px;
+    }
+    .policy-section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin-bottom: 16px;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+    .policy-section p {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: var(--on-surface-variant);
+    }
+    .policy-section ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      list-style-type: disc;
+    }
+    .policy-section li {
+      margin-bottom: 8px;
+      color: var(--on-surface-variant);
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      transition: transform 150ms ease;
+    }
+    .btn-back:hover {
+      transform: translateX(-4px);
+    }
+    .site-footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      background: var(--surface-container-lowest);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header scrolled" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-ghost btn-sm">Voltar ao site</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="policy-header">
+    <div class="container">
+      <h1>Política de Privacidade</h1>
+      <p>Lei Geral de Proteção de Dados (LGPD) — Transparência e Segurança</p>
+    </div>
+  </section>
+
+  <main class="policy-container">
+    <a href="javascript:history.back()" class="btn-back">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Voltar
+    </a>
+
+    <div class="policy-card">
+      <div class="policy-section">
+        <h2>1. Introdução e Compromisso</h2>
+        <p>A ALUGAKI tem o compromisso de proteger a privacidade e os dados pessoais de seus usuários. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos, tratamos e protegemos seus dados em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 - LGPD).</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>2. Dados Coletados</h2>
+        <p>Coletamos informações necessárias para a operacionalização da plataforma de aluguel colaborativo:</p>
+        <ul>
+          <li><strong>Dados Cadastrais:</strong> Nome completo, endereço de e-mail, senha criptografada e data de cadastro.</li>
+          <li><strong>Dados de Perfil:</strong> Foto de perfil (avatar) e endereços cadastrados para logística de retirada de itens.</li>
+          <li><strong>Dados de Transações:</strong> Histórico de reservas, itens anunciados e mensagens trocadas na plataforma.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>3. Finalidade do Tratamento</h2>
+        <p>O tratamento de dados pessoais na ALUGAKI serve às seguintes finalidades:</p>
+        <ul>
+          <li>Execução do contrato de aluguel entre os usuários (locador e locatário).</li>
+          <li>Gestão de segurança e autenticação (login seguro com assinatura HMAC).</li>
+          <li>Comunicações operacionais sobre reservas, faturamento e suporte ao cliente.</li>
+          <li>Cumprimento de obrigações legais e regulatórias.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>4. Direitos dos Titulares de Dados (Artigo 18 da LGPD)</h2>
+        <p>Você, como titular de dados pessoais, tem o direito de solicitar a qualquer momento:</p>
+        <ul>
+          <li>Confirmação da existência de tratamento e acesso aos dados armazenados.</li>
+          <li>Correção de dados incompletos, inexatos ou desatualizados em sua página de perfil.</li>
+          <li>Eliminação de dados pessoais desnecessários, excessivos ou tratados em desconformidade.</li>
+          <li>Revogação do consentimento e exclusão da conta.</li>
+        </ul>
+      </div>
+
+      <div class="policy-section">
+        <h2>5. Segurança e Compartilhamento</h2>
+        <p>Seus dados são protegidos por rígidos protocolos de segurança. Suas senhas são criptografadas com o algoritmo PBKDF2 SHA-512 e a comunicação é efetuada por SSL/HTTPS. Não vendemos ou compartilhamos seus dados com terceiros para fins de marketing sem seu consentimento expresso.</p>
+      </div>
+
+      <div class="policy-section">
+        <h2>6. Contato do Encarregado de Dados (DPO)</h2>
+        <p>Para dúvidas ou requisições sobre a privacidade dos seus dados, entre em contato através do canal de atendimento ou enviando e-mail para <strong>dpo@alugaki.com.br</strong>.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 ALUGAKI. Aluguéis confiáveis perante a LGPD.</p>
+    </div>
+  </footer>
+</body>
+</html>

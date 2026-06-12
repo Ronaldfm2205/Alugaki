@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoginForm();
   initRegisterForm();
   checkHashForTab();
+  window.addEventListener('hashchange', checkHashForTab);
 });
 
 /**
@@ -56,6 +57,8 @@ function switchTab(tabName) {
 function checkHashForTab() {
   if (window.location.hash === '#criar-conta') {
     switchTab('criar-conta');
+  } else {
+    switchTab('entrar');
   }
 }
 
@@ -87,22 +90,34 @@ function initLoginForm() {
       valid = false;
     }
 
+    const lgpd = document.getElementById('login-lgpd');
+    if (lgpd && !lgpd.checked) {
+      showFieldError(lgpd, 'Você precisa concordar com os termos perante a LGPD');
+      valid = false;
+    }
+
     if (valid) {
-      // Simulate login
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.textContent = 'Entrando...';
       submitBtn.disabled = true;
 
-      setTimeout(() => {
-        showToast('Login realizado com sucesso!', 'success');
-        submitBtn.textContent = 'Entrar';
-        submitBtn.disabled = false;
-
-        // Redirect to home
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 1000);
-      }, 1500);
+      window.AlugakiAPI.auth.login(email.value, password.value)
+        .then(response => {
+          const userWithToken = { ...response.data, token: response.token };
+          localStorage.setItem('alugaki_user', JSON.stringify(userWithToken));
+          
+          if(typeof showToast === 'function') showToast('Login realizado com sucesso!', 'success');
+          
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 1000);
+        })
+        .catch(err => {
+          console.error(err);
+          showFieldError(password, 'Credenciais inválidas');
+          submitBtn.textContent = 'Entrar';
+          submitBtn.disabled = false;
+        });
     }
   });
 }
@@ -146,20 +161,38 @@ function initRegisterForm() {
       valid = false;
     }
 
+    const lgpd = document.getElementById('register-lgpd');
+    if (lgpd && !lgpd.checked) {
+      showFieldError(lgpd, 'Você precisa concordar com os termos perante a LGPD');
+      valid = false;
+    }
+
     if (valid) {
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.textContent = 'Criando conta...';
       submitBtn.disabled = true;
 
-      setTimeout(() => {
-        showToast('Conta criada com sucesso!', 'success');
-        submitBtn.textContent = 'Criar Conta';
-        submitBtn.disabled = false;
-
+      window.AlugakiAPI.auth.register({
+        name: name.value,
+        email: email.value,
+        password: password.value
+      })
+      .then(response => {
+        const userWithToken = { ...response.data, token: response.token };
+        localStorage.setItem('alugaki_user', JSON.stringify(userWithToken));
+        
+        if(typeof showToast === 'function') showToast('Conta criada com sucesso!', 'success');
+        
         setTimeout(() => {
           window.location.href = 'index.html';
         }, 1000);
-      }, 1500);
+      })
+      .catch(err => {
+        console.error(err);
+        showFieldError(email, 'Erro ao criar conta. O e-mail pode já estar em uso.');
+        submitBtn.textContent = 'Criar Conta';
+        submitBtn.disabled = false;
+      });
     }
   });
 }

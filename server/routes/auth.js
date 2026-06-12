@@ -5,6 +5,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
+const authMiddleware = require('../middleware/auth');
+const security = require('../config/security');
 
 router.post('/login', async (req, res) => {
   try {
@@ -14,9 +16,10 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ error: 'E-mail e senha são obrigatórios' });
     }
 
-    const result = await db.query(`SELECT * FROM users WHERE email = $1 AND password = $2`, [email, password]);
+    // Retrieve user by email only, then verify hashed password
+    const result = await db.query(`SELECT * FROM users WHERE email = $1`, [email]);
 
-    if (result.rows.length === 0) {
+    if (result.rows.length === 0 || !security.verifyPassword(password, result.rows[0].password)) {
       return res.status(401).json({ error: 'E-mail ou senha inválidos' });
     }
 
@@ -26,7 +29,7 @@ router.post('/login', async (req, res) => {
     res.json({
       message: 'Login realizado com sucesso',
       data: userData,
-      token: `mock-token-${user.id}-${Date.now()}`
+      token: security.generateToken(user.id)
     });
   } catch (error) {
     console.error(error);
@@ -48,23 +51,63 @@ router.post('/register', async (req, res) => {
     }
 
     const memberSince = new Date().toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
+    const hashedPassword = security.hashPassword(password);
     
     const result = await db.query(`
       INSERT INTO users (name, email, password, member_since, badges)
       VALUES ($1, $2, $3, $4, $5)
       RETURNING id, name, email, member_since, rating, review_count, badges
-    `, [name, email, password, memberSince, JSON.stringify([])]);
+    `, [name, email, hashedPassword, memberSince, JSON.stringify([])]);
 
     const newUser = result.rows[0];
 
     res.status(201).json({
       message: 'Conta criada com sucesso',
       data: newUser,
-      token: `mock-token-${newUser.id}-${Date.now()}`
+      token: security.generateToken(newUser.id)
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao criar conta' });
+  }
+});
+
+router.put('/profile', authMiddleware, async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { name, email, password, avatar_url, addresses } = req.body;
+
+    // Get current user to merge fields if not provided
+    const userResult = await db.query(`SELECT * FROM users WHERE id = $1`, [userId]);
+    if (userResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+    const currentUser = userResult.rows[0];
+
+    const finalName = name || currentUser.name;
+    const finalEmail = email || currentUser.email;
+    
+    // Hash new password if provided
+    const finalPassword = password ? security.hashPassword(password) : currentUser.password;
+    
+    const finalAvatar = avatar_url !== undefined ? avatar_url : currentUser.avatar_url;
+    const finalAddresses = addresses !== undefined ? JSON.stringify(addresses) : (currentUser.addresses ? JSON.stringify(currentUser.addresses) : null);
+
+    const result = await db.query(`
+      UPDATE users 
+      SET name = $1, email = $2, password = $3, avatar_url = $4, addresses = $5
+      WHERE id = $6
+      RETURNING id, name, email, member_since, rating, review_count, badges, avatar_url, addresses
+    `, [finalName, finalEmail, finalPassword, finalAvatar, finalAddresses, userId]);
+
+    res.json({
+      message: 'Perfil atualizado com sucesso',
+      data: result.rows[0],
+      token: security.generateToken(userId)
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar perfil' });
   }
 });
 

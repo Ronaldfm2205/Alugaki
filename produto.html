@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furadeira Bosch Professional — ALUGAKI</title>
-  <meta name="description" content="Alugue a Furadeira de Impacto Bosch GSB 13 RE Professional. A mais potente e compacta da sua classe, com motor de 650W.">
+  <title>Carregando... — ALUGAKI</title>
+  <meta name="description" content="Alugue itens de qualidade na ALUGAKI. Plataforma de aluguéis confiáveis.">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/produto.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <!-- ============================================
@@ -20,7 +21,7 @@
       <nav class="header-nav" id="main-nav">
         <a href="busca.html">Explorar</a>
         <a href="index.html#como-funciona">Como Funciona</a>
-        <a href="busca.html">Anunciar Item</a>
+        <a href="anunciar_item.html">Anunciar Item</a>
       </nav>
       <div class="header-icons">
         <button class="header-icon-btn" id="btn-favorites" aria-label="Favoritos">
@@ -46,9 +47,9 @@
       <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
         <a href="index.html">Início</a>
         <span class="breadcrumb-separator">/</span>
-        <a href="busca.html?categoria=ferramentas">Ferramentas</a>
+        <a href="busca.html" id="breadcrumb-category-link">Explorar</a>
         <span class="breadcrumb-separator">/</span>
-        <span class="breadcrumb-current">Furadeiras</span>
+        <span class="breadcrumb-current">Carregando...</span>
       </nav>
 
       <!-- ============================================
@@ -58,37 +59,24 @@
         <!-- Gallery -->
         <div class="product-gallery" id="product-gallery">
           <div class="gallery-main">
-            <img src="assets/images/furadeira_bosch.png" alt="Furadeira Bosch Professional" id="gallery-main-img">
+            <img src="" alt="Carregando produto..." id="gallery-main-img" style="min-height:300px;background:#f0f0f0;">
             <button class="gallery-favorite" id="btn-favorite-product" aria-label="Adicionar aos favoritos">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </button>
           </div>
           <div class="gallery-thumbnails">
-            <div class="gallery-thumb active" data-index="0">
-              <img src="assets/images/furadeira_bosch.png" alt="Furadeira vista frontal">
-            </div>
-            <div class="gallery-thumb" data-index="1">
-              <img src="assets/images/furadeira_bosch.png" alt="Furadeira vista lateral">
-            </div>
-            <div class="gallery-thumb" data-index="2">
-              <img src="assets/images/furadeira_bosch.png" alt="Furadeira com acessórios">
-            </div>
-            <div class="gallery-thumb" data-index="3">
-              <img src="assets/images/furadeira_bosch.png" alt="Mais fotos">
-              <div class="gallery-thumb-more">+12 Fotos</div>
-            </div>
           </div>
         </div>
 
         <!-- Booking Panel -->
         <div class="booking-panel" id="booking-panel">
-          <h1 class="product-title">Furadeira Bosch Professional</h1>
+          <h1 class="product-title">Carregando...</h1>
           <div class="product-meta">
-            <span class="rating-badge">
+            <span class="rating-badge" id="product-rating">
               <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              4.8
+              --
             </span>
-            <span>• 42 Locações realizadas</span>
+            <span id="product-rentals">• -- Locações realizadas</span>
           </div>
 
           <!-- Price Tabs -->
@@ -184,55 +172,12 @@
           <div>
             <h2 class="description-title">Descrição do Item</h2>
             <p class="description-text">
-              A Furadeira de Impacto Bosch GSB 13 RE Professional é a mais potente e compacta da sua classe. Com um motor de 650W, ela é perfeita para perfurações em concreto, madeira e metal com extrema precisão. Ideal para profissionais que buscam performance e durabilidade em seus projetos.
+              Carregando descrição...
             </p>
           </div>
         </div>
       </div>
 
-      <!-- ============================================
-           SPECS + INCLUDES
-           ============================================ -->
-      <section class="specs-section" id="specs-section">
-        <div class="specs-layout">
-          <div>
-            <h3 class="specs-title">Especificações Técnicas</h3>
-            <div class="spec-row">
-              <span class="spec-row-label">Potência:</span>
-              <span class="spec-row-value">650 W</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-row-label">Velocidade:</span>
-              <span class="spec-row-value">0 – 2800 RPM</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-row-label">Peso:</span>
-              <span class="spec-row-value">1.8 kg</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-row-label">Mandril:</span>
-              <span class="spec-row-value">1/2" - 13mm</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="specs-title">O que está incluso</h3>
-            <ul class="includes-list">
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Maleta de transporte
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Jogo de 5 brocas
-              </li>
-              <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                Limitador de profundidade
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
       <!-- ============================================
            OWNER PROFILE
@@ -270,7 +215,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="footer-logo">ALUGAKI</span>
-        <span class="footer-copyright">© 2024 ALUGAKI. Aluguéis confiáveis para todos.</span>
+        <span class="footer-copyright">© 2026 ALUGAKI. Aluguéis confiáveis para todos.</span>
       </div>
       <nav class="footer-links">
         <a href="#">Política de Privacidade</a>
@@ -282,6 +227,7 @@
     </div>
   </footer>
 
+  <script src="js/api.js"></script>
   <script src="js/app.js"></script>
   <script src="js/produto.js"></script>
 </body>

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
   <div class="login-page">
@@ -65,6 +66,13 @@
           <input type="password" class="input-field" id="login-password" placeholder="••••••••" required>
         </div>
 
+        <div class="input-group checkbox-group" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:16px;">
+          <input type="checkbox" id="login-lgpd" required style="margin-top:4px;">
+          <label for="login-lgpd" style="font-size:0.85rem; color:var(--text-muted); line-height:1.4; font-family:'Inter', sans-serif;">
+            Li e concordo com os Termos de Uso e a <a href="politica_privacidade.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Política de Privacidade</a> perante a LGPD.
+          </label>
+        </div>
+
         <div class="login-submit">
           <button type="submit" class="btn btn-primary btn-full">Entrar</button>
         </div>
@@ -90,6 +98,13 @@
         <div class="input-group">
           <label class="input-label" for="register-password-confirm">CONFIRMAR SENHA</label>
           <input type="password" class="input-field" id="register-password-confirm" placeholder="Repita sua senha" required>
+        </div>
+
+        <div class="input-group checkbox-group" style="display:flex; align-items:flex-start; gap:8px; margin-bottom:16px;">
+          <input type="checkbox" id="register-lgpd" required style="margin-top:4px;">
+          <label for="register-lgpd" style="font-size:0.85rem; color:var(--text-muted); line-height:1.4; font-family:'Inter', sans-serif;">
+            Li e concordo com os Termos de Uso e a <a href="politica_privacidade.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Política de Privacidade</a> perante a LGPD.
+          </label>
         </div>
 
         <div class="login-submit">
@@ -123,15 +138,16 @@
 
       <!-- Footer -->
       <div class="login-footer">
-        <p>© 2024 ALUGAKI. Aluguéis confiáveis para todos.</p>
+        <p>© 2026 ALUGAKI. Aluguéis confiáveis para todos.</p>
         <div class="login-footer-links">
-          <a href="#">Política de Privacidade</a>
-          <a href="#">Termos de Serviço</a>
+          <a href="politica_privacidade.html">Política de Privacidade</a>
+          <a href="termos_servico.html">Termos de Serviço</a>
         </div>
       </div>
     </div>
   </div>
 
+  <script src="js/api.js"></script>
   <script src="js/app.js"></script>
   <script src="js/login.js"></script>
 </body>

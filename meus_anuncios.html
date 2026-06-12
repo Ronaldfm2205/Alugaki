@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Anúncios — ALUGAKI</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/meus_anuncios.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- Header Minimal -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <div class="header-logo">
+          <a href="index.html">ALUGAKI</a>
+        </div>
+        <div class="header-actions">
+          <a href="anunciar_item.html" class="btn btn-primary">Novo Anúncio</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="container">
+      <div class="dashboard-header">
+        <h1>Meus Anúncios</h1>
+        <p>Gerencie os produtos que você está alugando.</p>
+      </div>
+
+      <div class="dashboard-content" id="my-ads-list">
+        <!-- JS injeta os cards aqui -->
+        <div class="loading-state">Carregando seus anúncios...</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/meus_anuncios.js"></script>
+</body>
+</html>

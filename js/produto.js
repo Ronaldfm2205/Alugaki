@@ -7,7 +7,112 @@ document.addEventListener('DOMContentLoaded', () => {
   initGallery();
   initCalendar();
   initPriceTabs();
+  
+  // Atualiza link do checkout com o ID correto
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id') || '3';
+  const ctaBtn = document.querySelector('.booking-cta a');
+  if (ctaBtn) {
+    ctaBtn.href = `checkout.html?id=${productId}`;
+  }
+
+  loadProductDetails(productId);
 });
+
+async function loadProductDetails(productId) {
+  try {
+    const response = await window.AlugakiAPI.products.getById(productId);
+    const product = response.data;
+    
+    // Atualiza título da página
+    document.title = `${product.title} — ALUGAKI`;
+    
+    // Breadcrumb
+    const breadcrumbCurrent = document.querySelector('.breadcrumb-current');
+    if (breadcrumbCurrent) breadcrumbCurrent.textContent = product.title;
+    
+    // Breadcrumb category
+    const breadcrumbCatLink = document.getElementById('breadcrumb-category-link');
+    if (breadcrumbCatLink && product.category) {
+      const catLabel = product.category_label || product.category;
+      breadcrumbCatLink.textContent = catLabel.charAt(0).toUpperCase() + catLabel.slice(1);
+      breadcrumbCatLink.href = `busca.html?categoria=${product.category}`;
+    }
+    
+    // Meta description
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && product.description) {
+      metaDesc.setAttribute('content', product.description.substring(0, 160));
+    }
+    
+    // Titulo Principal
+    const titleEl = document.querySelector('.product-title');
+    if (titleEl) titleEl.textContent = product.title;
+    
+    // Rating e Locações
+    const ratingEl = document.getElementById('product-rating');
+    if (ratingEl && product.rating) {
+      ratingEl.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ${product.rating}`;
+    }
+    const rentalsEl = document.getElementById('product-rentals');
+    if (rentalsEl) {
+      rentalsEl.textContent = `• ${product.rentals || 0} Locações realizadas`;
+    }
+    
+    // Preços
+    const dailyPriceEl = document.querySelector('.price-tab[data-period="daily"] .price-tab-value');
+    if (dailyPriceEl) dailyPriceEl.textContent = `R$ ${product.price_per_day}`;
+    
+    const weeklyPriceEl = document.querySelector('.price-tab[data-period="weekly"] .price-tab-value');
+    if (weeklyPriceEl) weeklyPriceEl.textContent = `R$ ${product.price_per_week || (product.price_per_day * 6)}`;
+    
+    // Descrição
+    const descEl = document.querySelector('.description-text');
+    if (descEl) descEl.textContent = product.description;
+    
+    // Imagens
+    if (product.images && product.images.length > 0) {
+      const mainImg = document.getElementById('gallery-main-img');
+      if (mainImg) {
+        mainImg.src = product.images[0];
+        mainImg.alt = product.title;
+      }
+      
+      const thumbContainer = document.querySelector('.gallery-thumbnails');
+      if (thumbContainer) {
+        thumbContainer.innerHTML = '';
+        product.images.forEach((imgUrl, idx) => {
+          if (idx > 3) return; // limit to 4 thumbs
+          const div = document.createElement('div');
+          div.className = `gallery-thumb ${idx === 0 ? 'active' : ''}`;
+          div.dataset.index = idx;
+          div.innerHTML = `<img src="${imgUrl}" alt="${product.title}">`;
+          thumbContainer.appendChild(div);
+        });
+        // re-init gallery clicks
+        initGallery();
+      }
+    }
+    
+    // Proprietário
+    if (product.owner) {
+      const ownerNameEl = document.querySelector('.owner-name');
+      if (ownerNameEl) ownerNameEl.textContent = product.owner.name;
+      
+      const ownerSinceEl = document.querySelector('.owner-since');
+      if (ownerSinceEl) ownerSinceEl.textContent = `Membro desde ${product.owner.member_since || 'Out 2021'}`;
+      
+      const avatarEl = document.querySelector('.owner-avatar');
+      if (avatarEl && product.owner.name) {
+        const initials = product.owner.name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase();
+        avatarEl.textContent = initials;
+      }
+    }
+    
+  } catch (error) {
+    console.error('Erro ao carregar detalhes do produto:', error);
+  }
+}
 
 /**
  * Gallery thumbnail click to swap main image
@@ -57,8 +162,9 @@ function initCalendar() {
   ];
   const dayNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
-  let currentMonth = 9; // October (0-indexed)
-  let currentYear = 2024;
+  const todayInit = new Date();
+  let currentMonth = todayInit.getMonth();
+  let currentYear = todayInit.getFullYear();
   let selectedStart = null;
   let selectedEnd = null;
 
