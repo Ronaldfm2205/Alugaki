@@ -28,10 +28,20 @@ async function loadMyAds() {
 
     container.innerHTML = products.map(p => {
       let imageUrl = 'assets/images/camera_sony.png'; // fallback
-      try {
-        const imgs = JSON.parse(p.images);
-        if (imgs && imgs.length > 0) imageUrl = imgs[0];
-      } catch (e) {}
+      if (p.images) {
+        if (Array.isArray(p.images) && p.images.length > 0) {
+          imageUrl = p.images[0];
+        } else if (typeof p.images === 'string') {
+          if (p.images.startsWith('[')) {
+            try {
+              const imgs = JSON.parse(p.images);
+              if (imgs && imgs.length > 0) imageUrl = imgs[0];
+            } catch (e) {}
+          } else {
+            imageUrl = p.images;
+          }
+        }
+      }
 
       return `
         <div class="my-ad-card" id="ad-${p.id}">

@@ -45,6 +45,15 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Nome, e-mail e senha são obrigatórios' });
     }
 
+    if (password.length < 8) {
+      return res.status(400).json({ error: 'A senha deve ter pelo menos 8 caracteres' });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Formato de e-mail inválido' });
+    }
+
     const existing = await db.query(`SELECT id FROM users WHERE email = $1`, [email]);
     if (existing.rows.length > 0) {
       return res.status(409).json({ error: 'Este e-mail já está cadastrado' });

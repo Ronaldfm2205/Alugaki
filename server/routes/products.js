@@ -18,7 +18,18 @@ router.get('/featured', async (req, res) => {
       ORDER BY rating DESC, rentals DESC 
       LIMIT 4
     `);
-    res.json({ data: result.rows, total: result.rowCount });
+    const formattedRows = result.rows.map(row => {
+      let imgs = [];
+      if (row.images) {
+        if (typeof row.images === 'string') {
+          try { imgs = JSON.parse(row.images); } catch(e) { imgs = [row.images]; }
+        } else if (Array.isArray(row.images)) {
+          imgs = row.images;
+        }
+      }
+      return { ...row, images: imgs };
+    });
+    res.json({ data: formattedRows, total: result.rowCount });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao buscar produtos em destaque' });
@@ -94,22 +105,64 @@ router.get('/', async (req, res) => {
     const allResults = await db.query(query, values);
     const total = allResults.rowCount;
 
-    const startIndex = (parseInt(page) - 1) * parseInt(limit);
+    // Sanitize pagination inputs
+    const parsedPage = Math.max(1, parseInt(page) || 1);
+    const parsedLimit = Math.max(1, parseInt(limit) || 12);
+    
+    const startIndex = (parsedPage - 1) * parsedLimit;
     
     query += ` LIMIT $${valueIndex} OFFSET $${valueIndex + 1}`;
-    values.push(parseInt(limit), startIndex);
+    values.push(parsedLimit, startIndex);
 
     const paginatedResults = await db.query(query, values);
 
+    const formattedRows = paginatedResults.rows.map(row => {
+      let imgs = [];
+      if (row.images) {
+        if (typeof row.images === 'string') {
+          try { imgs = JSON.parse(row.images); } catch(e) { imgs = [row.images]; }
+        } else if (Array.isArray(row.images)) {
+          imgs = row.images;
+        }
+      }
+      return { ...row, images: imgs };
+    });
+
     res.json({
-      data: paginatedResults.rows,
+      data: formattedRows,
       total,
-      page: parseInt(page),
-      totalPages: Math.ceil(total / parseInt(limit))
+      page: parsedPage,
+      totalPages: Math.ceil(total / parsedLimit)
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao buscar produtos' });
+  }
+});
+
+/**
+ * GET /api/products/me/list
+ * Lista produtos do usuário autenticado
+ * IMPORTANT: Must be defined BEFORE /:id to avoid Express matching "me" as an ID
+ */
+router.get('/me/list', authMiddleware, async (req, res) => {
+  try {
+    const result = await db.query(`SELECT * FROM products WHERE owner_id = $1 ORDER BY id DESC`, [req.userId]);
+    const formattedRows = result.rows.map(row => {
+      let imgs = [];
+      if (row.images) {
+        if (typeof row.images === 'string') {
+          try { imgs = JSON.parse(row.images); } catch(e) { imgs = [row.images]; }
+        } else if (Array.isArray(row.images)) {
+          imgs = row.images;
+        }
+      }
+      return { ...row, images: imgs };
+    });
+    res.json({ data: formattedRows });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao buscar seus anúncios' });
   }
 });
 
@@ -130,6 +183,16 @@ router.get('/:id', async (req, res) => {
     // Fetch owner
     const ownerResult = await db.query(`SELECT id, name, member_since, rating, review_count, badges FROM users WHERE id = $1`, [product.owner_id]);
     const owner = ownerResult.rows[0] || null;
+
+    let imgs = [];
+    if (product.images) {
+      if (typeof product.images === 'string') {
+        try { imgs = JSON.parse(product.images); } catch(e) { imgs = [product.images]; }
+      } else if (Array.isArray(product.images)) {
+        imgs = product.images;
+      }
+    }
+    product.images = imgs;
 
     res.json({ data: { ...product, owner } });
   } catch (error) {
@@ -166,19 +229,7 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-/**
- * GET /api/products/me
- * Lista produtos do usuário autenticado
- */
-router.get('/me/list', authMiddleware, async (req, res) => {
-  try {
-    const result = await db.query(`SELECT * FROM products WHERE owner_id = $1 ORDER BY id DESC`, [req.userId]);
-    res.json({ data: result.rows });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar seus anúncios' });
-  }
-});
+/* Route /me/list moved above /:id to fix Express route matching */
 
 /**
  * PUT /api/products/:id

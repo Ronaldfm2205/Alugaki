@@ -24,6 +24,30 @@ const api = {
   },
 
   /**
+   * Helper to handle response and intercept 401 Unauthorized globally
+   */
+  async checkResponse(response) {
+    if (response.status === 401) {
+      console.warn('Token expired or invalid. Forcing logout.');
+      localStorage.removeItem('alugaki_user');
+      window.location.href = 'login.html?expired=true';
+      throw new Error('Unauthorized');
+    }
+    if (!response.ok) {
+      // Tentar extrair a mensagem de erro do backend, se houver
+      let errorMessage = `HTTP ${response.status}`;
+      try {
+        const errorData = await response.json();
+        if (errorData && errorData.error) {
+          errorMessage = errorData.error;
+        }
+      } catch (e) {}
+      throw new Error(errorMessage);
+    }
+    return await response.json();
+  },
+
+  /**
    * Generic GET request
    */
   async get(endpoint, params = {}) {
@@ -38,8 +62,7 @@ const api = {
       const response = await fetch(url.toString(), {
         headers: api.getHeaders()
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return await response.json();
+      return await api.checkResponse(response);
     } catch (error) {
       console.error(`API GET ${endpoint} failed:`, error);
       throw error;
@@ -56,8 +79,7 @@ const api = {
         headers: api.getHeaders(),
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return await response.json();
+      return await api.checkResponse(response);
     } catch (error) {
       console.error(`API POST ${endpoint} failed:`, error);
       throw error;
@@ -74,8 +96,7 @@ const api = {
         headers: api.getHeaders(),
         body: JSON.stringify(data),
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return await response.json();
+      return await api.checkResponse(response);
     } catch (error) {
       console.error(`API PUT ${endpoint} failed:`, error);
       throw error;
@@ -91,8 +112,7 @@ const api = {
         method: 'DELETE',
         headers: api.getHeaders()
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      return await response.json();
+      return await api.checkResponse(response);
     } catch (error) {
       console.error(`API DELETE ${endpoint} failed:`, error);
       throw error;
