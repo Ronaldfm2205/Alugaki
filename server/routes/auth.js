@@ -146,13 +146,13 @@ router.post('/forgot-password', async (req, res) => {
     );
 
     // Simulação do envio de e-mail (imprimir link no console)
-    const resetUrl = \`http://localhost:3000/esqueci_senha.html?token=\${resetToken}\`;
-    console.log(\`\n📧 [SIMULAÇÃO DE E-MAIL]\`);
-    console.log(\`Para: \${email}\`);
-    console.log(\`Assunto: Recuperação de Senha - Alugaki\`);
-    console.log(\`Olá \${user.name},\`);
-    console.log(\`Para redefinir sua senha, clique no link abaixo (válido por 1 hora):\`);
-    console.log(\`\${resetUrl}\n\`);
+    const resetUrl = `http://localhost:3000/esqueci_senha.html?token=${resetToken}`;
+    console.log(`\n📧 [SIMULAÇÃO DE E-MAIL]`);
+    console.log(`Para: ${email}`);
+    console.log(`Assunto: Recuperação de Senha - Alugaki`);
+    console.log(`Olá ${user.name},`);
+    console.log(`Para redefinir sua senha, clique no link abaixo (válido por 1 hora):`);
+    console.log(`${resetUrl}\n`);
 
     res.json({ message: 'Se o e-mail existir, um link de recuperação será enviado.' });
   } catch (error) {
