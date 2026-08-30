@@ -51,7 +51,7 @@ async function loadSearchResults() {
   
   // Search query
   const searchInput = document.getElementById('search-input');
-  if (searchInput && searchInput.value.trim() && searchInput.value.trim() !== 'Ferramentas') {
+  if (searchInput && searchInput.value.trim()) {
     params.q = searchInput.value.trim();
   }
 
