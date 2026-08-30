@@ -52,7 +52,7 @@ async function loadMyAds() {
             <div class="my-ad-price">R$ ${p.price_per_day}/dia</div>
           </div>
           <div class="my-ad-actions">
-            <button class="btn btn-secondary btn-sm" onclick="editAd(${p.id}, '${p.title.replace(/'/g, "\\'")}', ${p.price_per_day})">Editar</button>
+            <button class="btn btn-secondary btn-sm" onclick="editAd(${p.id})">Editar</button>
             <button class="btn btn-sm" style="background: var(--error-container); color: var(--on-error-container);" onclick="deleteAd(${p.id})">Excluir</button>
           </div>
         </div>
@@ -65,19 +65,8 @@ async function loadMyAds() {
   }
 }
 
-async function editAd(id, currentTitle, currentPrice) {
-  const newTitle = prompt('Novo título do anúncio:', currentTitle);
-  if (!newTitle) return;
-  const newPrice = prompt('Novo preço por dia (R$):', currentPrice);
-  if (!newPrice || isNaN(newPrice)) return;
-
-  try {
-    await window.AlugakiAPI.put(`/products/${id}`, { title: newTitle, pricePerDay: parseInt(newPrice) });
-    if(typeof showToast === 'function') showToast('Anúncio atualizado com sucesso!', 'success');
-    loadMyAds(); // recarrega lista
-  } catch (error) {
-    alert('Erro ao atualizar anúncio. Verifique se você tem permissão.');
-  }
+function editAd(id) {
+  window.location.href = `editar_anuncio.html?id=${id}`;
 }
 
 async function deleteAd(id) {

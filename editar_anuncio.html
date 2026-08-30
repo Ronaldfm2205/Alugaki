@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Anúncio — ALUGAKI</title>
+  <meta name="description" content="Cadastre seu produto e comece a ganhar dinheiro alugando na ALUGAKI.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/anunciar_item.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="site-header scrolled" id="site-header">
+    <div class="container header-inner">
+      <div class="header-logo"><a href="index.html">ALUGAKI</a></div>
+      <nav class="header-nav" id="main-nav">
+        <a href="busca.html">Explorar</a>
+        <a href="index.html#como-funciona">Como Funciona</a>
+        <a href="anunciar_item.html" class="active">Anunciar Item</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn btn-secondary btn-sm">Entrar</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="container">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h1>Editar Anúncio</h1>
+          <p>Atualize as informações do seu produto abaixo.</p>
+        </div>
+
+        <form id="form-anunciar" class="anunciar-form">
+          <!-- Seção: Informações Básicas -->
+          <fieldset class="form-section">
+            <legend>Informações Básicas</legend>
+            
+            <div class="input-group">
+              <label class="input-label" for="item-title">TÍTULO DO ANÚNCIO</label>
+              <input type="text" class="input-field" id="item-title" placeholder="Ex: Furadeira de Impacto Bosch" required>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label" for="item-category">CATEGORIA</label>
+              <select class="input-field" id="item-category" required>
+                <option value="" disabled selected>Selecione uma categoria</option>
+                <option value="ferramentas">Ferramentas</option>
+                <option value="eletronicos">Eletrônicos</option>
+                <option value="esportes">Esportes</option>
+                <option value="festas">Festas</option>
+                <option value="eletrodomesticos">Eletrodomésticos</option>
+                <option value="jardinagem">Jardinagem</option>
+              </select>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label" for="item-description">DESCRIÇÃO</label>
+              <textarea class="input-field" id="item-description" rows="4" placeholder="Descreva os detalhes do item, estado de conservação, marca, etc." required></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Seção: Preço e Condição -->
+          <fieldset class="form-section">
+            <legend>Preço e Condição</legend>
+
+            <div class="form-row">
+              <div class="input-group">
+                <label class="input-label" for="item-price">PREÇO POR DIA (R$)</label>
+                <input type="number" class="input-field" id="item-price" placeholder="45" min="1" step="1" required>
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="item-condition">ESTADO DO ITEM</label>
+                <select class="input-field" id="item-condition" required>
+                  <option value="como-novo">Como novo</option>
+                  <option value="bom">Em bom estado</option>
+                  <option value="usado">Usado com marcas</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Seção: Fotos (Oculta para Edição) -->
+          <fieldset class="form-section" style="display:none;">
+          </fieldset>
+
+          <!-- Seção: Localização -->
+          <fieldset class="form-section">
+            <legend>Localização de Retirada</legend>
+            <p class="section-hint">Facilite o preenchimento buscando pelo seu CEP ou usando sua localização atual.</p>
+
+            <div class="location-actions">
+              <div class="input-group cep-group">
+                <label class="input-label" for="item-cep">CEP (OPCIONAL)</label>
+                <div class="cep-input-wrapper">
+                  <input type="text" class="input-field" id="item-cep" placeholder="00000-000" maxlength="9">
+                  <button type="button" class="btn btn-secondary" id="btn-buscar-cep">Buscar</button>
+                </div>
+              </div>
+              <div class="location-or">ou</div>
+              <button type="button" class="btn btn-outline" id="btn-usar-gps">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                Usar minha localização
+              </button>
+            </div>
+
+            <div class="input-group">
+              <label class="input-label" for="item-location">BAIRRO E CIDADE</label>
+              <input type="text" class="input-field" id="item-location" placeholder="Ex: Pinheiros, São Paulo" required>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg" id="btn-submit">Salvar Alterações</button>
+            <p class="form-terms">Ao publicar, você concorda com os <a href="#">Termos de Uso</a> e <a href="#">Regras da Comunidade</a>.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">ALUGAKI</span>
+        <span class="footer-copyright">© 2026 ALUGAKI. Aluguéis confiáveis para todos.</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="ajuda.html">Ajuda e Suporte</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/editar_anuncio.js"></script>
+</body>
+</html>

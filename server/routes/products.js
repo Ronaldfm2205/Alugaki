@@ -238,7 +238,7 @@ router.post('/', authMiddleware, async (req, res) => {
 router.put('/:id', authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, pricePerDay } = req.body; // Campos simplificados para edição no MVP
+    const { title, description, category, pricePerDay, condition, location } = req.body;
     
     // Verifica posse
     const check = await db.query(`SELECT owner_id FROM products WHERE id = $1`, [id]);
@@ -246,9 +246,17 @@ router.put('/:id', authMiddleware, async (req, res) => {
     if (check.rows[0].owner_id !== req.userId) return res.status(403).json({ error: 'Você não tem permissão para editar este anúncio' });
 
     const result = await db.query(`
-      UPDATE products SET title = $1, price_per_day = $2, price_per_week = $3
-      WHERE id = $4 RETURNING *
-    `, [title, pricePerDay, pricePerDay * 6, id]);
+      UPDATE products 
+      SET title = $1, 
+          description = $2,
+          category = $3,
+          category_label = $3,
+          price_per_day = $4, 
+          price_per_week = $5,
+          condition = $6,
+          location = $7
+      WHERE id = $8 RETURNING *
+    `, [title, description, category, pricePerDay, pricePerDay * 6, condition, location, id]);
 
     res.json({ message: 'Produto atualizado', data: result.rows[0] });
   } catch (error) {
