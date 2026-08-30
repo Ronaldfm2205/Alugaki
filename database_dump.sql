@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS bookings (
 
 -- 2. Insert Test Users
 INSERT INTO users (id, name, email, password, member_since, rating, review_count, badges) VALUES
-(1, 'Ricardo M.', 'ricardo@email.com', '12345678', 'Out 2021', 4.9, 124, '["IDENTIDADE VERIFICADA", "SUPER OWNER"]'),
-(2, 'Ana C.', 'ana@email.com', '12345678', 'Mar 2022', 4.7, 56, '["IDENTIDADE VERIFICADA"]'),
-(3, 'Carlos S.', 'carlos@email.com', '12345678', 'Jan 2023', 4.8, 32, '["IDENTIDADE VERIFICADA", "SUPER OWNER"]');
+(1, 'Ricardo M.', 'ricardo@email.com', '5c0544cf998af942f6925b042e98b7de:abb771aec2c070acaad03d616fabe0722cf1e9feb4fc3c67d7cb40d23223dc1867fc23fa061ddbd7a65ad93cb703f97448ca18555870f039bd5435defef87106', 'Out 2021', 4.9, 124, '["IDENTIDADE VERIFICADA", "SUPER OWNER"]'),
+(2, 'Ana C.', 'ana@email.com', '831bd17d9761b6565369de44d87a0040:e7a5d7ebba2cf9e920124e4ba8ebe0227a6eaef3e21409017763fceefb7bc163e20c41d9c2725a32fe62ca7f9049b848e5802c33a0c69ff9bacb429d051d54d4', 'Mar 2022', 4.7, 56, '["IDENTIDADE VERIFICADA"]'),
+(3, 'Carlos S.', 'carlos@email.com', '0e5831a4e57a8ad17bda1674efedf49b:84604bb5f2d5d5bc0d116e7f9231ed1d63b5e6caee22a28873c4c0485f05366c7e469c8024e9c1e3ca6888c863e67fc667cc26c363e04b8a0a0549051fa2a916', 'Jan 2023', 4.8, 32, '["IDENTIDADE VERIFICADA", "SUPER OWNER"]');
 
 -- 3. Insert Categories
 INSERT INTO categories (id, name, slug, icon) VALUES

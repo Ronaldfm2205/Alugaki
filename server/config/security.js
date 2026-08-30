@@ -4,16 +4,16 @@ require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET || 'super-secret-alugaki-key-1234';
 
 /**
- * Hash password using PBKDF2 SHA-512
+ * Hash password using PBKDF2 SHA-256
  */
 function hashPassword(password) {
   const salt = crypto.randomBytes(16).toString('hex');
-  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  const hash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha256').toString('hex');
   return `${salt}:${hash}`;
 }
 
 /**
- * Verify password using PBKDF2 SHA-512, with fallback for seeded plain-text passwords
+ * Verify password using PBKDF2 SHA-256, with fallback for seeded plain-text passwords
  */
 function verifyPassword(password, storedPassword) {
   if (!storedPassword) return false;
@@ -24,7 +24,7 @@ function verifyPassword(password, storedPassword) {
   }
   
   const [salt, hash] = storedPassword.split(':');
-  const verifyHash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
+  const verifyHash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha256').toString('hex');
   return hash === verifyHash;
 }
 
