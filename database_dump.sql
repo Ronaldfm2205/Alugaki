@@ -13,7 +13,9 @@ CREATE TABLE IF NOT EXISTS users (
   member_since VARCHAR(50),
   rating FLOAT DEFAULT 0,
   review_count INT DEFAULT 0,
-  badges JSONB DEFAULT '[]'
+  badges JSONB DEFAULT '[]',
+  reset_token VARCHAR(255),
+  reset_token_expires TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS categories (

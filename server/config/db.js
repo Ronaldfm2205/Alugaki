@@ -1,12 +1,17 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// Configura o pool de conexão utilizando a variável de ambiente DATABASE_URL
+// Verifica se estamos rodando localmente no Docker (DATABASE_URL pode ter db ou localhost)
+const isLocal = process.env.DATABASE_URL && 
+               (process.env.DATABASE_URL.includes('localhost') || process.env.DATABASE_URL.includes('@db:5432'));
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false // Necessário para a maioria das conexões remotas do Supabase/Postgres
-  }
+  ...(isLocal ? {} : {
+    ssl: {
+      rejectUnauthorized: false
+    }
+  })
 });
 
 // Testa a conexão ao iniciar

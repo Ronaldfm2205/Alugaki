@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Senha — ALUGAKI</title>
+  <meta name="description" content="Recupere sua senha na ALUGAKI.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-hero">
+      <div class="login-hero-bg">
+        <img src="assets/images/login_hero.png" alt="Comunidade ALUGAKI" loading="eager">
+      </div>
+      <div class="login-hero-content">
+        <h1 class="login-hero-title">Recupere seu acesso.</h1>
+        <p class="login-hero-text">
+          Esqueceu sua senha? Não se preocupe, ajudaremos você a voltar a alugar em segurança e com confiança.
+        </p>
+      </div>
+    </div>
+
+    <div class="login-form-side">
+      <div class="login-brand">ALUGAKI</div>
+      <h2 class="login-subtitle" id="page-subtitle">Recuperação de Senha</h2>
+
+      <div id="alert-container" style="margin-bottom: 20px;"></div>
+
+      <!-- Forgot Password Form (Ask for Email) -->
+      <form class="login-form login-form-container" id="form-forgot-password" novalidate>
+        <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem;">Digite o e-mail associado à sua conta e enviaremos um link para redefinir sua senha.</p>
+        <div class="input-group">
+          <label class="input-label" for="forgot-email">ENDEREÇO DE E-MAIL</label>
+          <input type="email" class="input-field" id="forgot-email" placeholder="nome@empresa.com" required>
+        </div>
+
+        <div class="login-submit">
+          <button type="submit" class="btn btn-primary btn-full" id="btn-forgot">Enviar Link</button>
+        </div>
+        
+        <div style="margin-top: 24px; text-align: center;">
+          <a href="login.html" style="color: var(--primary); text-decoration: none; font-size: 0.9rem; font-weight: 500;">Voltar para o Login</a>
+        </div>
+      </form>
+
+      <!-- Reset Password Form (Enter New Password) -->
+      <form class="login-form login-form-container" id="form-reset-password" novalidate style="display: none;">
+        <p style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem;">Crie uma nova senha para sua conta.</p>
+        
+        <input type="hidden" id="reset-token">
+        
+        <div class="input-group">
+          <label class="input-label" for="reset-password">NOVA SENHA</label>
+          <input type="password" class="input-field" id="reset-password" placeholder="Mínimo 8 caracteres" required minlength="8">
+        </div>
+
+        <div class="input-group">
+          <label class="input-label" for="reset-password-confirm">CONFIRMAR NOVA SENHA</label>
+          <input type="password" class="input-field" id="reset-password-confirm" placeholder="Repita sua nova senha" required minlength="8">
+        </div>
+
+        <div class="login-submit">
+          <button type="submit" class="btn btn-primary btn-full" id="btn-reset">Redefinir Senha</button>
+        </div>
+      </form>
+
+      <div class="login-footer">
+        <p>© 2026 ALUGAKI. Aluguéis confiáveis para todos.</p>
+        <div class="login-footer-links">
+          <a href="politica_privacidade.html">Política de Privacidade</a>
+          <a href="termos_servico.html">Termos de Serviço</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/esqueci_senha.js"></script>
+</body>
+</html>
