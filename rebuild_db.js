@@ -9,11 +9,14 @@ async function rebuild() {
     // Read and execute the SQL dump
     const sqlDump = fs.readFileSync(path.join(__dirname, 'database_dump.sql'), 'utf8');
     
+    // Remove comments
+    const noComments = sqlDump.replace(/--.*$/gm, '');
+    
     // Split by semicolons and execute each statement
-    const statements = sqlDump
+    const statements = noComments
       .split(';')
       .map(s => s.trim())
-      .filter(s => s.length > 0 && !s.startsWith('--'));
+      .filter(s => s.length > 0);
 
     for (const stmt of statements) {
       try {
