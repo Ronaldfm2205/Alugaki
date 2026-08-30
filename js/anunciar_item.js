@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initPhotoUpload();
   initFormSubmit();
+  initLocationFeatures();
 });
 
 let uploadedPhotos = [];
@@ -117,5 +118,103 @@ function initFormSubmit() {
       submitBtn.textContent = 'Publicar Anúncio';
       submitBtn.disabled = false;
     }
+  });
+}
+
+function initLocationFeatures() {
+  const btnBuscarCep = document.getElementById('btn-buscar-cep');
+  const inputCep = document.getElementById('item-cep');
+  const btnUsarGps = document.getElementById('btn-usar-gps');
+  const inputLocation = document.getElementById('item-location');
+
+  if (!btnBuscarCep || !inputCep || !btnUsarGps || !inputLocation) return;
+
+  // CEP Mask
+  inputCep.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 5) {
+      value = value.substring(0, 5) + '-' + value.substring(5, 8);
+    }
+    e.target.value = value;
+  });
+
+  // CEP Fetch
+  btnBuscarCep.addEventListener('click', async () => {
+    const cep = inputCep.value.replace(/\D/g, '');
+    if (cep.length !== 8) {
+      if(typeof showToast === 'function') showToast('CEP inválido', 'error');
+      return;
+    }
+    
+    btnBuscarCep.disabled = true;
+    btnBuscarCep.textContent = '...';
+    
+    try {
+      const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = await res.json();
+      
+      if (data.erro) {
+        if(typeof showToast === 'function') showToast('CEP não encontrado', 'error');
+      } else {
+        const bairro = data.bairro || '';
+        const cidade = data.localidade || '';
+        const uf = data.uf || '';
+        inputLocation.value = bairro ? `${bairro}, ${cidade} - ${uf}` : `${cidade} - ${uf}`;
+        if(typeof showToast === 'function') showToast('Localização preenchida pelo CEP!', 'success');
+      }
+    } catch (err) {
+      console.error(err);
+      if(typeof showToast === 'function') showToast('Erro ao buscar CEP', 'error');
+    } finally {
+      btnBuscarCep.disabled = false;
+      btnBuscarCep.textContent = 'Buscar';
+    }
+  });
+
+  // Geolocation
+  btnUsarGps.addEventListener('click', () => {
+    if (!navigator.geolocation) {
+      if(typeof showToast === 'function') showToast('Seu navegador não suporta geolocalização', 'error');
+      return;
+    }
+
+    const originalText = btnUsarGps.innerHTML;
+    btnUsarGps.disabled = true;
+    btnUsarGps.innerHTML = 'Aguarde...';
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+          const data = await res.json();
+          
+          if (data && data.address) {
+            const bairro = data.address.suburb || data.address.neighbourhood || data.address.city_district || '';
+            const cidade = data.address.city || data.address.town || data.address.village || '';
+            const estado = data.address.state || '';
+            
+            inputLocation.value = bairro ? `${bairro}, ${cidade}` : `${cidade}, ${estado}`;
+            if(typeof showToast === 'function') showToast('Localização preenchida pelo GPS!', 'success');
+          } else {
+            if(typeof showToast === 'function') showToast('Não foi possível identificar o endereço', 'error');
+          }
+        } catch (err) {
+          console.error(err);
+          if(typeof showToast === 'function') showToast('Erro ao buscar endereço via GPS', 'error');
+        } finally {
+          btnUsarGps.disabled = false;
+          btnUsarGps.innerHTML = originalText;
+        }
+      },
+      (error) => {
+        console.error(error);
+        let msg = 'Erro ao obter localização';
+        if (error.code === 1) msg = 'Permissão de localização negada';
+        if(typeof showToast === 'function') showToast(msg, 'error');
+        btnUsarGps.disabled = false;
+        btnUsarGps.innerHTML = originalText;
+      }
+    );
   });
 }
