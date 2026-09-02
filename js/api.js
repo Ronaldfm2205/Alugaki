@@ -3,7 +3,11 @@
    Fetch wrapper for backend communication
    ============================================ */
 
-const API_BASE = '/api';
+const isLocalStaticServer = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+  && window.location.port !== '3000';
+const API_BASE = isLocalStaticServer
+  ? 'http://localhost:3000/api'
+  : '/api';
 
 const api = {
   /**
