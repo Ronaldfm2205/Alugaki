@@ -3,18 +3,32 @@
    Fetch wrapper for backend communication
    ============================================ */
 
-const isLocalStaticServer = ['localhost', '127.0.0.1'].includes(window.location.hostname)
-  && window.location.port !== '3000';
-const API_BASE = isLocalStaticServer
-  ? 'http://localhost:3000/api'
-  : '/api';
+const getApiBase = () => {
+  const localPorts = ['3000', '3001', '3002'];
+
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    const currentPort = window.location.port;
+    if (currentPort && !localPorts.includes(currentPort)) {
+      return 'http://localhost:3001/api';
+    }
+  }
+
+  return '/api';
+};
+
+const API_BASE = getApiBase();
 
 const api = {
   /**
    * Helper to get common headers including Auth token
    */
-  getHeaders() {
+  getHeaders(endpoint = '') {
     const headers = { 'Content-Type': 'application/json' };
+    const isAuthEndpoint = typeof endpoint === 'string' && endpoint.startsWith('/auth/');
+    if (isAuthEndpoint) {
+      return headers;
+    }
+
     const userJson = localStorage.getItem('alugaki_user');
     if (userJson) {
       try {
@@ -32,9 +46,14 @@ const api = {
    */
   async checkResponse(response) {
     if (response.status === 401) {
-      console.warn('Token expired or invalid. Forcing logout.');
-      localStorage.removeItem('alugaki_user');
-      window.location.href = 'login.html?expired=true';
+      const url = response.url || '';
+      const isAuthRequest = url.includes('/api/auth/');
+
+      if (!isAuthRequest) {
+        console.warn('Token expired or invalid. Forcing logout.');
+        localStorage.removeItem('alugaki_user');
+        window.location.href = 'login.html?expired=true';
+      }
       throw new Error('Unauthorized');
     }
     if (!response.ok) {
@@ -64,7 +83,7 @@ const api = {
 
     try {
       const response = await fetch(url.toString(), {
-        headers: api.getHeaders()
+        headers: api.getHeaders(endpoint)
       });
       return await api.checkResponse(response);
     } catch (error) {
@@ -80,7 +99,7 @@ const api = {
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, {
         method: 'POST',
-        headers: api.getHeaders(),
+        headers: api.getHeaders(endpoint),
         body: JSON.stringify(data),
       });
       return await api.checkResponse(response);
@@ -97,7 +116,7 @@ const api = {
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, {
         method: 'PUT',
-        headers: api.getHeaders(),
+        headers: api.getHeaders(endpoint),
         body: JSON.stringify(data),
       });
       return await api.checkResponse(response);
@@ -114,7 +133,7 @@ const api = {
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, {
         method: 'DELETE',
-        headers: api.getHeaders()
+        headers: api.getHeaders(endpoint)
       });
       return await api.checkResponse(response);
     } catch (error) {
@@ -134,7 +153,17 @@ const api = {
   auth: {
     login(email, password) { return api.post('/auth/login', { email, password }); },
     register(data) { return api.post('/auth/register', data); },
+    googleLogin(data) { return api.post('/auth/google', data); },
     updateProfile(data) { return api.put('/auth/profile', data); },
+  },
+
+  // ── Support Endpoints ──
+  support: {
+    health() { return api.get('/support/health'); },
+    getConversations(userId) { return api.get('/support/conversations', userId ? { userId } : {}); },
+    sendMessage(data) { return api.post('/support/message', data); },
+    reply(data) { return api.post('/support/reply', data); },
+    stats() { return api.get('/support/stats'); },
   },
 
   // ── Booking Endpoints ──

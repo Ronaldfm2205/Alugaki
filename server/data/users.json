@@ -1,0 +1,71 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ricardo M.",
+      "email": "ricardo@email.com",
+      "password": "5c0544cf998af942f6925b042e98b7de:abb771aec2c070acaad03d616fabe0722cf1e9feb4fc3c67d7cb40d23223dc1867fc23fa061ddbd7a65ad93cb703f97448ca18555870f039bd5435defef87106",
+      "member_since": "Out 2021",
+      "rating": 4.9,
+      "review_count": 124,
+      "badges": [
+        "IDENTIDADE VERIFICADA",
+        "SUPER OWNER"
+      ],
+      "role": "user"
+    },
+    {
+      "id": 9999,
+      "name": "Equipe de Suporte",
+      "email": "suporte@alugaki.com",
+      "password": "832e42e62c530661bd85f66f0f08e4f9:a249f4af9721f1a1ffff27581020cc308a6850f4e11a728e95ca628710a3334d3647cd037bf98b62f6f974eac4c7baa4050ef6ef22f8a84977e5bd04b6b74e5c",
+      "member_since": "Hoje",
+      "role": "support"
+    },
+    {
+      "id": 1789610936204,
+      "name": "Maria Google",
+      "email": "maria@gmail.com",
+      "password": "ebba73b1e812e261a839aab8beef0c77:428179586abe26cdc6b6f246fd513166978582d4d7241c3561631acc98a2dce8ebc0ac3212c35f28bc2e170a2beb9c7dce2f2fdf875cd9f4e71504a74c2845e7",
+      "member_since": "set. de 2026",
+      "badges": [
+        "GOOGLE"
+      ],
+      "avatar_url": null,
+      "role": "user"
+    },
+    {
+      "id": 1000,
+      "name": "Cliente Demo",
+      "email": "cliente@alugaki.com",
+      "role": "user",
+      "member_since": "Hoje",
+      "password": "04c7087ce99dbdaf5c762d0627b8a11b:9cdf4288bb142c8075408e1750229c67a63e7630a73e5265051d7727c8a03b5b5b4d08aebb6690d30485892301b1b5b7ce41665412c60dd4a51b941be58dfaeb",
+      "badges": [
+        "DEMO"
+      ]
+    },
+    {
+      "id": 1789614371019,
+      "name": "Usuário Teste",
+      "email": "teste@alugaki.com",
+      "password": "c7295f090425649416d104e6b31a498e:8face3055f4ca12e2e738723150b5fd80c01e459057f1acc34dff58bee4f456bf5dbebdaae978283808733f98c67bdcd96dbdb6b570747a3a731d2e77f498663",
+      "role": "user",
+      "member_since": "Hoje",
+      "badges": [
+        "TESTE"
+      ]
+    },
+    {
+      "id": 1789614371467,
+      "name": "Usuário Teste 2",
+      "email": "teste2@alugaki.com",
+      "password": "5e70c78db0a5e968390aa0d673f2a9a4:837266f2e14e739bdaf2a3229ba607293bec6dca36a5d8d5b5828c8a50d7572befb9bdf6d5b1acb56c9f8c7918f4dbf380b8014327251622b442e57dab6ff42f",
+      "role": "user",
+      "member_since": "Hoje",
+      "badges": [
+        "TESTE"
+      ]
+    }
+  ]
+}

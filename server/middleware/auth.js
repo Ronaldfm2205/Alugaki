@@ -13,13 +13,14 @@ function authMiddleware(req, res, next) {
   }
 
   const token = authHeader.split(' ')[1];
+  const payload = security.verifyToken(token);
 
-  const userId = security.verifyToken(token);
-  if (!userId) {
+  if (!payload || !payload.userId) {
     return res.status(401).json({ error: 'Token inválido ou expirado' });
   }
 
-  req.userId = userId;
+  req.userId = payload.userId;
+  req.userRole = payload.role || 'user';
   next();
 }
 

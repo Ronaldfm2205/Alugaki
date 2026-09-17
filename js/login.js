@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initLoginTabs();
   initLoginForm();
   initRegisterForm();
+  initGoogleLogin();
+  initSupportLogin();
   checkHashForTab();
   window.addEventListener('hashchange', checkHashForTab);
 });
@@ -80,8 +82,8 @@ function initLoginForm() {
 
     let valid = true;
 
-    if (!email.value.trim() || !isValidEmail(email.value)) {
-      showFieldError(email, 'Informe um e-mail válido');
+    if (!email.value.trim() || !isValidLoginIdentifier(email.value)) {
+      showFieldError(email, 'Informe um e-mail ou usuário de teste válido');
       valid = false;
     }
 
@@ -200,8 +202,55 @@ function initRegisterForm() {
 /**
  * Email validation helper
  */
+function initGoogleLogin() {
+  const googleBtn = document.getElementById('btn-google');
+  if (!googleBtn) return;
+
+  googleBtn.addEventListener('click', async () => {
+    const email = window.prompt('Digite seu e-mail do Google para continuar (modo local):', 'usuario@gmail.com');
+    if (!email) return;
+
+    const name = window.prompt('Digite o nome que aparecerá no perfil:', email.split('@')[0] || 'Usuário Google');
+    const token = `google-demo-${Date.now()}`;
+
+    try {
+      const response = await window.AlugakiAPI.auth.googleLogin({
+        email,
+        name: name || email.split('@')[0],
+        avatar_url: null,
+        token,
+      });
+
+      const userWithToken = { ...response.data, token: response.token };
+      localStorage.setItem('alugaki_user', JSON.stringify(userWithToken));
+      if (typeof showToast === 'function') showToast('Login com Google realizado com sucesso!', 'success');
+      setTimeout(() => window.location.href = 'index.html', 800);
+    } catch (error) {
+      console.error(error);
+      if (typeof showToast === 'function') showToast('Não foi possível autenticar com Google neste ambiente local.', 'error');
+      else alert('Não foi possível autenticar com Google neste ambiente local.');
+    }
+  });
+}
+
+function initSupportLogin() {
+  const supportBtn = document.getElementById('btn-support-login');
+  if (!supportBtn) return;
+
+  supportBtn.addEventListener('click', () => {
+    window.location.href = 'suporte_login.html';
+  });
+}
+
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidLoginIdentifier(value) {
+  const normalized = String(value || '').trim();
+  if (!normalized) return false;
+  if (isValidEmail(normalized)) return true;
+  return ['teste', 'teste2'].includes(normalized.toLowerCase());
 }
 
 /**

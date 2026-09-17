@@ -153,7 +153,12 @@ function updateAuthUI() {
       avatarHtml = `<img src="${user.avatar_url}" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex-shrink: 0;" alt="Avatar">`;
     }
 
+    const supportLink = user.role === 'support' || user.role === 'admin'
+      ? '<a href="suporte_admin.html" class="btn btn-ghost" style="color: var(--on-surface);">Painel de suporte</a>'
+      : '<a href="suporte.html" class="btn btn-ghost" style="color: var(--on-surface);">Suporte</a>';
+
     headerActions.innerHTML = `
+      ${supportLink}
       <a href="meus_anuncios.html" class="btn btn-ghost" style="color: var(--on-surface);">Meus Anúncios</a>
       <a href="perfil.html" class="user-menu" style="display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; padding: 6px 12px; background: var(--surface-container); border-radius: var(--rounded-full); text-decoration: none; color: var(--on-surface);">
         ${avatarHtml}

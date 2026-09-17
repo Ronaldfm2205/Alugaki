@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login de Suporte — ALUGAKI</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/suporte-login.css" />
+</head>
+<body>
+  <main class="support-login-page">
+    <section class="support-login-card">
+      <div class="support-login-header">
+        <span class="eyebrow">Área restrita</span>
+        <h1>Suporte ALUGAKI</h1>
+        <p>Entre com suas credenciais para atender clientes e responder pedidos.</p>
+      </div>
+
+      <form id="form-support-login" class="support-login-form" novalidate>
+        <div class="input-group">
+          <label for="support-email">E-mail</label>
+          <input id="support-email" type="email" placeholder="suporte@alugaki.com" required />
+        </div>
+
+        <div class="input-group">
+          <label for="support-password">Senha</label>
+          <input id="support-password" type="password" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Entrar no painel</button>
+      </form>
+
+      <div class="support-login-actions">
+        <a href="login.html" class="btn btn-ghost">Voltar ao login</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/suporte-login.js"></script>
+</body>
+</html>

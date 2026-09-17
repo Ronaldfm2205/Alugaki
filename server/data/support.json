@@ -1,0 +1,100 @@
+{
+  "conversations": [
+    {
+      "id": 1789610885301,
+      "userId": 9999,
+      "userName": "Usuário",
+      "email": "9999@alugaki.local",
+      "subject": "Teste suporte",
+      "status": "in_progress",
+      "createdAt": "2026-09-17T02:08:05.301Z",
+      "updatedAt": "2026-09-17T02:57:13.785Z",
+      "messages": [
+        {
+          "id": 1789610885302,
+          "sender": "user",
+          "text": "Quero saber sobre cancelamento e suporte",
+          "createdAt": "2026-09-17T02:08:05.301Z"
+        },
+        {
+          "id": 1789610885303,
+          "sender": "bot",
+          "text": "Para cancelar uma reserva, acesse a área de reservas do seu perfil. Se a solicitação for feita com antecedência, o valor pode ser reembolsado conforme a política do anúncio.",
+          "createdAt": "2026-09-17T02:08:05.301Z"
+        },
+        {
+          "id": 1789611379257,
+          "sender": "support",
+          "text": "Mensagem teste",
+          "createdAt": "2026-09-17T02:16:19.257Z"
+        },
+        {
+          "id": 1789613799642,
+          "sender": "user",
+          "text": "testando suporte",
+          "createdAt": "2026-09-17T02:56:39.641Z"
+        },
+        {
+          "id": 1789613799643,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T02:56:39.641Z"
+        },
+        {
+          "id": 1789613833786,
+          "sender": "user",
+          "text": "okjkbjkbjkbkbjkv testes qwertyuiopáskdjncvk 123456789",
+          "createdAt": "2026-09-17T02:57:13.785Z"
+        },
+        {
+          "id": 1789613833787,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T02:57:13.785Z"
+        }
+      ]
+    },
+    {
+      "id": 1789613199388,
+      "userId": 1000,
+      "userName": "Usuário",
+      "email": "1000@alugaki.local",
+      "subject": "Dúvida do usuário",
+      "status": "in_progress",
+      "createdAt": "2026-09-17T02:46:39.388Z",
+      "updatedAt": "2026-09-17T02:49:47.581Z",
+      "messages": [
+        {
+          "id": 1789613199390,
+          "sender": "user",
+          "text": "olá",
+          "createdAt": "2026-09-17T02:46:39.389Z"
+        },
+        {
+          "id": 1789613199391,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T02:46:39.389Z"
+        },
+        {
+          "id": 1789613241603,
+          "sender": "support",
+          "text": "Olá, boa noite!",
+          "createdAt": "2026-09-17T02:47:21.603Z"
+        },
+        {
+          "id": 1789613387582,
+          "sender": "user",
+          "text": "Mensagem de teste em tempo real",
+          "createdAt": "2026-09-17T02:49:47.581Z"
+        },
+        {
+          "id": 1789613387583,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T02:49:47.581Z"
+        }
+      ]
+    }
+  ]
+}
