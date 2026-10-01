@@ -170,6 +170,9 @@ const api = {
   bookings: {
     create(data) { return api.post('/bookings', data); },
     getById(id) { return api.get(`/bookings/${id}`); },
+    getByUserId(userId) { return api.get(`/bookings/user/${userId}`); },
+    validateToken(data) { return api.post('/bookings/validate-token', data); },
+    validateByProduct(data) { return api.post('/bookings/validate-by-product', data); }
   },
 
   // ── Category Endpoints ──

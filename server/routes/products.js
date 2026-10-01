@@ -1,5 +1,5 @@
 /* ============================================
-   ALUGAKI — Products API Routes (Supabase)
+   ALUGAKI — Products API Routes
    ============================================ */
 
 const express = require('express');
@@ -101,11 +101,9 @@ router.get('/', async (req, res) => {
         query += ` ORDER BY id DESC`;
     }
 
-    // Calculate pagination manually to get TOTAL count as well
     const allResults = await db.query(query, values);
     const total = allResults.rowCount;
 
-    // Sanitize pagination inputs
     const parsedPage = Math.max(1, parseInt(page) || 1);
     const parsedLimit = Math.max(1, parseInt(limit) || 12);
     
@@ -147,7 +145,13 @@ router.get('/', async (req, res) => {
  */
 router.get('/me/list', authMiddleware, async (req, res) => {
   try {
-    const result = await db.query(`SELECT * FROM products WHERE owner_id = $1 ORDER BY id DESC`, [req.userId]);
+    const result = await db.query(`
+      SELECT p.*, 
+        (SELECT b.status FROM bookings b WHERE b.product_id = p.id AND b.status IN ('pending_withdrawal', 'active') ORDER BY CASE WHEN b.status = 'active' THEN 1 ELSE 2 END, b.id DESC LIMIT 1) as booking_status,
+        (SELECT b.end_date FROM bookings b WHERE b.product_id = p.id AND b.status IN ('pending_withdrawal', 'active') ORDER BY CASE WHEN b.status = 'active' THEN 1 ELSE 2 END, b.id DESC LIMIT 1) as booking_end_date
+      FROM products p 
+      WHERE p.owner_id = $1 ORDER BY p.id DESC
+    `, [req.userId]);
     const formattedRows = result.rows.map(row => {
       let imgs = [];
       if (row.images) {
@@ -162,7 +166,7 @@ router.get('/me/list', authMiddleware, async (req, res) => {
     res.json({ data: formattedRows });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar seus anúncios' });
+    res.status(500).json({ error: 'Erro ao listar seus anúncios' });
   }
 });
 
@@ -180,7 +184,6 @@ router.get('/:id', async (req, res) => {
 
     const product = result.rows[0];
 
-    // Fetch owner
     const ownerResult = await db.query(`SELECT id, name, member_since, rating, review_count, badges FROM users WHERE id = $1`, [product.owner_id]);
     const owner = ownerResult.rows[0] || null;
 
@@ -225,7 +228,7 @@ router.post('/', authMiddleware, async (req, res) => {
     res.status(201).json({ data: result.rows[0] });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao criar produto' });
+    res.status(500).json({ error: 'Erro ao criar anúncio' });
   }
 });
 
@@ -238,7 +241,7 @@ router.post('/', authMiddleware, async (req, res) => {
 router.put('/:id', authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description, category, pricePerDay, condition, location } = req.body;
+    const { title, description, category, pricePerDay, condition, location, images } = req.body;
     
     // Verifica posse
     const check = await db.query(`SELECT owner_id FROM products WHERE id = $1`, [id]);
@@ -254,14 +257,15 @@ router.put('/:id', authMiddleware, async (req, res) => {
           price_per_day = $4, 
           price_per_week = $5,
           condition = $6,
-          location = $7
-      WHERE id = $8 RETURNING *
-    `, [title, description, category, pricePerDay, pricePerDay * 6, condition, location, id]);
+          location = $7,
+          images = $8
+      WHERE id = $9 RETURNING *
+    `, [title, description, category, pricePerDay, pricePerDay * 6, condition, location, JSON.stringify(images || []), id]);
 
     res.json({ message: 'Produto atualizado', data: result.rows[0] });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao atualizar produto' });
+    res.status(500).json({ error: 'Erro ao atualizar anúncio' });
   }
 });
 
@@ -284,7 +288,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
     res.json({ message: 'Produto excluído com sucesso' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao excluir produto' });
+    res.status(500).json({ error: 'Erro ao excluir anúncio' });
   }
 });
 

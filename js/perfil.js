@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAvatarUpload(user);
   initEnderecos(user);
   initSeguranca(user);
+  initThemeToggle();
+  initBookings(user);
 });
 
 // Helper para salvar os dados atualizados localmente
@@ -80,6 +82,13 @@ function initContaForm(user) {
       });
 
       updateUserLocal(response.data);
+      
+      // Atualiza visualmente o placeholder (a letra grande) caso não tenha foto
+      const placeholderEl = document.getElementById('avatar-placeholder');
+      if (placeholderEl && response.data.name) {
+        placeholderEl.textContent = response.data.name.charAt(0).toUpperCase();
+      }
+      
       if(typeof showToast === 'function') showToast('Dados atualizados com sucesso!', 'success');
     } catch (error) {
       if(typeof showToast === 'function') showToast('Erro ao atualizar dados.', 'error');
@@ -322,4 +331,115 @@ function initEnderecos(user) {
   };
 
   renderList();
+}
+
+function initThemeToggle() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+  const currentTheme = localStorage.getItem('alugaki_theme') || 'light';
+  toggle.checked = currentTheme === 'dark';
+  
+  toggle.addEventListener('change', (e) => {
+    if (e.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('alugaki_theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('alugaki_theme', 'light');
+    }
+  });
+}
+
+/**
+ * Aba Meus Aluguéis
+ */
+async function initBookings(user) {
+  const listEl = document.getElementById('bookings-list');
+  if (!listEl) return;
+
+  async function loadBookings() {
+    try {
+      const res = await window.AlugakiAPI.bookings.getByUserId(user.id);
+      renderBookings(res.data);
+    } catch (error) {
+      listEl.innerHTML = '<p style="color:red;">Erro ao carregar aluguéis.</p>';
+    }
+  }
+
+  function renderBookings(bookings) {
+    listEl.innerHTML = '';
+    if (!bookings || bookings.length === 0) {
+      listEl.innerHTML = '<p style="color:var(--outline);">Você ainda não possui aluguéis.</p>';
+      return;
+    }
+
+    bookings.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'booking-card';
+      card.style = 'border: 1px solid var(--surface-variant); border-radius: 8px; padding: 16px; margin-bottom: 16px;';
+      
+      let statusText = '';
+      let tokenUI = '';
+
+      if (b.status === 'pending_withdrawal') {
+        statusText = '<span style="color:var(--primary); font-weight:600;">Aguardando Retirada</span>';
+        tokenUI = `
+          <div style="margin-top: 12px; background: var(--surface-variant); padding: 12px; border-radius: 8px;">
+            <p style="margin-bottom: 8px; font-size: 14px; font-weight: 500;">Seu Token de Retirada (mostre ao locador): <strong style="font-size:16px;">${b.withdrawal_token}</strong></p>
+            <p style="margin-bottom: 8px; font-size: 14px; color: var(--on-surface-variant);">Ou se você é o locador, insira o token do locatário para liberar o item e capturar o pagamento:</p>
+            <div style="display:flex; gap: 8px;">
+              <input type="text" id="token-input-${b.id}" placeholder="0000" maxlength="4" style="padding: 8px; border-radius: 4px; border: 1px solid var(--outline); width: 80px;">
+              <button class="btn btn-primary btn-sm" onclick="window.validateToken(${b.id}, 'withdrawal')">Validar Token</button>
+            </div>
+          </div>
+        `;
+      } else if (b.status === 'active') {
+        statusText = '<span style="color:green; font-weight:600;">Ativo</span>';
+        tokenUI = `
+          <div style="margin-top: 12px; background: var(--surface-variant); padding: 12px; border-radius: 8px;">
+            <p style="margin-bottom: 8px; font-size: 14px; font-weight: 500;">Seu Token de Devolução (mostre ao locador): <strong style="font-size:16px;">${b.return_token}</strong></p>
+            <p style="margin-bottom: 8px; font-size: 14px; color: var(--on-surface-variant);">Ou se você é o locador, insira o token para confirmar a devolução:</p>
+            <div style="display:flex; gap: 8px;">
+              <input type="text" id="token-input-${b.id}" placeholder="0000" maxlength="4" style="padding: 8px; border-radius: 4px; border: 1px solid var(--outline); width: 80px;">
+              <button class="btn btn-primary btn-sm" onclick="window.validateToken(${b.id}, 'return')">Validar Token</button>
+            </div>
+          </div>
+        `;
+      } else if (b.status === 'completed') {
+        statusText = '<span style="color:var(--outline); font-weight:600;">Concluído</span>';
+      } else {
+        statusText = `<span>${b.status}</span>`;
+      }
+
+      card.innerHTML = `
+        <h3 style="font-size: 16px; margin-bottom: 8px;">Reserva #${b.id} - ${b.product_title || 'Produto'}</h3>
+        <p style="font-size: 14px; margin-bottom: 4px;"><strong>Data:</strong> ${new Date(b.start_date).toLocaleDateString('pt-BR')} até ${new Date(b.end_date).toLocaleDateString('pt-BR')}</p>
+        <p style="font-size: 14px; margin-bottom: 4px;"><strong>Total Retido:</strong> R$ ${b.total}</p>
+        <p style="font-size: 14px; margin-bottom: 8px;"><strong>Status:</strong> ${statusText}</p>
+        ${tokenUI}
+      `;
+      listEl.appendChild(card);
+    });
+  }
+
+  window.validateToken = async (bookingId, type) => {
+    const input = document.getElementById(`token-input-${bookingId}`);
+    if (!input || !input.value) {
+      if(typeof showToast === 'function') showToast('Digite o token', 'error');
+      else alert('Digite o token');
+      return;
+    }
+    
+    try {
+      const res = await window.AlugakiAPI.bookings.validateToken({ bookingId, token: input.value, type });
+      if(typeof showToast === 'function') showToast(res.message, 'success');
+      else alert(res.message);
+      loadBookings();
+    } catch (error) {
+      if(typeof showToast === 'function') showToast(error.message, 'error');
+      else alert(error.message);
+    }
+  };
+
+  loadBookings();
 }

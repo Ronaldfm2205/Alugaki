@@ -53,7 +53,7 @@ Para rodar o projeto, você vai precisar de:
 
 - **Node.js** v14 ou superior instalado
 - **NPM** ou **Yarn** (Gerenciadores de pacotes)
-- **PostgreSQL** ou uma conta no **Supabase** (para o Banco de Dados)
+- **PostgreSQL** em container Docker (banco local do projeto)
 
 ### Dependências Node (listadas no `package.json`):
 - `express` (servidor)
@@ -86,7 +86,7 @@ Adicione a seguinte configuração dentro do `.env` (substitua pelos dados do se
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
 JWT_SECRET="uma_chave_secreta_para_gerar_tokens"
 ```
-*(Se estiver utilizando o Supabase, utilize a Connection String fornecida por eles).*
+*(Use a string de conexão local do PostgreSQL em Docker.)*
 
 ### 4. Inicialize as Tabelas e o Banco de Dados
 Existem duas formas de criar o esquema do banco e preencher com dados iniciais de teste:

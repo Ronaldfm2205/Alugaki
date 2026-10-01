@@ -3,121 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato — ALUGAKI</title>
-  <meta name="description" content="Entre em contato com o dono do item e feche seu aluguel de forma segura.">
+  <title>Pagamento Seguro — ALUGAKI</title>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/checkout.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body class="bg-light">
-  <!-- ============================================
-       CHECKOUT HEADER (simplified)
-       ============================================ -->
-  <header class="checkout-header" id="checkout-header">
-    <div class="container checkout-header-inner">
-      <div class="checkout-header-left">
-        <a href="javascript:history.back()" class="checkout-back" aria-label="Voltar">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        </a>
-        <span class="checkout-header-logo">ALUGAKI</span>
-      </div>
-      <div class="checkout-secure">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Aluguel Seguro
-      </div>
+<body>
+  <!-- HEADER MINIMALISTA -->
+  <header class="site-header" style="border-bottom: 1px solid var(--surface-variant);">
+    <div class="container header-inner" style="justify-content: center;">
+      <div class="header-logo" style="margin: 0;"><a href="index.html">ALUGAKI <span style="font-size: 14px; font-weight: 500; color: var(--outline); margin-left: 8px;">Checkout Seguro</span></a></div>
     </div>
   </header>
 
-  <main>
+  <main class="checkout-main">
     <div class="container">
-      <div class="checkout-layout">
-        <!-- ============================================
-             CONTACT CARD (Lead Gen)
-             ============================================ -->
-        <aside class="contact-card" id="contact-card">
-          
-          <div class="contact-card-header">
-            <h1 class="contact-price-title">
-              <span id="checkout-price-main">R$ 0,00</span><span class="contact-price-period">/dia</span>
-            </h1>
-            <span class="badge-tag">Aluguel</span>
-          </div>
-
-          <div class="contact-product-info">
-            <h2 id="checkout-item-name" style="font-size: 1.1rem; margin-bottom: 4px;">Carregando...</h2>
-            <div id="checkout-item-category" style="color: var(--text-muted); font-size: 0.9rem;"></div>
-          </div>
-
-          <div class="contact-values-section">
-            <h3 class="contact-section-title">Valores</h3>
-            
-            <div class="contact-value-row">
-              <span class="contact-value-label">Aluguel (1 dia)</span>
-              <span class="contact-value-amount" id="checkout-val-aluguel">R$ 0,00</span>
+      <div class="checkout-grid">
+        
+        <!-- RESUMO DO PEDIDO -->
+        <section class="checkout-summary">
+          <h2 class="headline-sm">Resumo do Aluguel</h2>
+          <div class="summary-card">
+            <div class="summary-item-info">
+              <div class="summary-image" id="summary-img"></div>
+              <div class="summary-details">
+                <h3 id="summary-title" class="label-md" style="font-size: 16px;">Carregando...</h3>
+                <p id="summary-location" class="body-sm" style="color: var(--on-surface-variant);"></p>
+              </div>
             </div>
             
-            <div class="contact-value-row">
-              <span class="contact-value-label">Taxa de Serviço</span>
-              <span class="contact-value-amount" id="checkout-val-taxa">R$ 0,00</span>
+            <div class="summary-dates">
+              <div class="date-box">
+                <span class="label-sm">Retirada</span>
+                <p class="body-md" id="summary-start">--/--/----</p>
+              </div>
+              <div class="date-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </div>
+              <div class="date-box">
+                <span class="label-sm">Devolução</span>
+                <p class="body-md" id="summary-end">--/--/----</p>
+              </div>
             </div>
 
-            <div class="contact-value-row total-row">
-              <span class="contact-value-label total-label">
-                Valor total previsto
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;margin-left:4px;vertical-align:middle;color:var(--text-muted);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-              </span>
-              <span class="contact-value-amount total-amount" id="checkout-val-total">R$ 0,00</span>
+            <div class="summary-breakdown">
+              <div class="breakdown-row">
+                <span><span id="summary-daily-price">R$ 0</span> x <span id="summary-days">0</span> dias</span>
+                <span id="summary-subtotal">R$ 0,00</span>
+              </div>
+              <div class="breakdown-row">
+                <span>Taxa de Proteção ALUGAKI <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-left: 4px; color: var(--primary);"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span>
+                <span id="summary-fee">R$ 0,00</span>
+              </div>
+              <div class="breakdown-divider"></div>
+              <div class="breakdown-row total-row">
+                <span>Total a Reter</span>
+                <span id="summary-total">R$ 0,00</span>
+              </div>
+            </div>
+            
+            <div class="security-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div>
+                <strong>Cobrança Pré-Aprovada</strong>
+                <p>O valor só será debitado do seu cartão quando você estiver com o item em mãos e confirmar o Token de Retirada.</p>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="contact-phone-section">
-            <div class="phone-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <!-- PAGAMENTO -->
+        <section class="checkout-payment" id="payment-section">
+          <h2 class="headline-sm">Pagamento</h2>
+          <form id="checkout-form" class="payment-form">
+            <div class="payment-methods">
+              <div class="method-card active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                <span>Cartão de Crédito</span>
+              </div>
+              <!-- Outros metodos omitidos para MVP -->
             </div>
-            <div class="phone-number" id="phone-display">(11) 99999-****</div>
-            <button class="btn-reveal-phone" id="btn-reveal-phone">Exibir telefone</button>
-          </div>
 
-          <div class="contact-cta">
-            <button class="btn-whatsapp" id="btn-falar-locatario">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;margin-right:8px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-              FALAR COM LOCATÁRIO
+            <div class="card-inputs">
+              <div class="input-group">
+                <label class="input-label">Número do Cartão</label>
+                <div class="input-with-icon">
+                  <input type="text" class="input-field" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                  <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                </div>
+              </div>
+              
+              <div class="input-row">
+                <div class="input-group">
+                  <label class="input-label">Validade</label>
+                  <input type="text" class="input-field" placeholder="MM/AA" maxlength="5" required>
+                </div>
+                <div class="input-group">
+                  <label class="input-label">CVV</label>
+                  <input type="text" class="input-field" placeholder="123" maxlength="4" required>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label class="input-label">Nome impresso no cartão</label>
+                <input type="text" class="input-field" placeholder="NOME DO TITULAR" required>
+              </div>
+              
+              <div class="input-group">
+                <label class="input-label">CPF do Titular</label>
+                <input type="text" class="input-field" placeholder="000.000.000-00" required>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-lg" id="btn-checkout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Finalizar Reserva e Reter Limite
             </button>
+            <p class="terms-text">Ao finalizar, você concorda com os Termos de Serviço da ALUGAKI. Conexão SSL criptografada 256-bits.</p>
+          </form>
+        </section>
+
+        <!-- SUCESSO (TOKEN) -->
+        <section class="checkout-success" id="success-section" style="display: none; text-align: center; background: var(--surface); border: 1px solid var(--surface-variant); border-radius: 12px; padding: 32px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 64px; height: 64px; color: green; margin-bottom: 16px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <h2 class="headline-sm" style="margin-bottom: 8px;">Reserva Confirmada!</h2>
+          <p style="color: var(--on-surface-variant); margin-bottom: 24px;">Limite retido com sucesso. Agora você precisa encontrar o proprietário para retirar o item.</p>
+          
+          <div id="token-generator-area">
+            <button id="btn-generate-token" class="btn btn-primary btn-lg" style="margin-bottom: 16px;">
+              Gerar Token de Retirada
+            </button>
+            <p style="font-size: 12px; color: var(--on-surface-variant);">O token terá validade de 1 minuto para segurança.</p>
           </div>
 
-          <p class="contact-legal">
-            Ao ver o número ou enviar uma mensagem, seus dados poderão ser compartilhados com os anunciantes, a fim de personalizar sua experiência de negociação.
-            <a href="#">Saiba mais</a>
-          </p>
-        </aside>
+          <div id="token-display-area" style="display: none; background: var(--surface-variant); border-radius: 8px; padding: 24px; margin-top: 16px;">
+            <p style="font-size: 14px; font-weight: 500; margin-bottom: 8px;">Mostre este token ao proprietário:</p>
+            <div id="token-value" style="font-size: 32px; font-weight: bold; letter-spacing: 4px; color: var(--primary); margin-bottom: 16px;">0000</div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--error);">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span id="token-countdown">01:00</span>
+            </div>
+            
+          </div>
+          <div style="margin-top: 24px;">
+            <a href="perfil.html" class="btn btn-secondary">Ir para Meus Aluguéis</a>
+          </div>
+        </section>
 
       </div>
     </div>
   </main>
 
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="site-footer" id="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="footer-logo">ALUGAKI</span>
-        <span class="footer-copyright">© 2026 ALUGAKI. Aluguéis confiáveis para todos.</span>
-      </div>
-      <nav class="footer-links">
-        <a href="#">Política de Privacidade</a>
-        <a href="#">Termos de Serviço</a>
-        <a href="#">Informações de Seguro</a>
-        <a href="#">Confiança e Segurança</a>
-        <a href="#">Suporte</a>
-      </nav>
-    </div>
-  </footer>
-
   <script src="js/api.js"></script>
-  <script src="js/app.js"></script>
   <script src="js/checkout.js"></script>
 </body>
 </html>

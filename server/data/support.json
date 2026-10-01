@@ -95,6 +95,162 @@
           "createdAt": "2026-09-17T02:49:47.581Z"
         }
       ]
+    },
+    {
+      "id": 1789683249295,
+      "userId": 5,
+      "userName": "Usuário",
+      "email": "5@alugaki.local",
+      "subject": "Dúvida do usuário",
+      "status": "in_progress",
+      "createdAt": "2026-09-17T22:14:09.295Z",
+      "updatedAt": "2026-09-17T23:06:45.746Z",
+      "messages": [
+        {
+          "id": 1789683249297,
+          "sender": "user",
+          "text": "Teste",
+          "createdAt": "2026-09-17T22:14:09.296Z"
+        },
+        {
+          "id": 1789683249298,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T22:14:09.296Z"
+        },
+        {
+          "id": 1789683290752,
+          "sender": "support",
+          "text": "RespostaTeste",
+          "createdAt": "2026-09-17T22:14:50.752Z"
+        },
+        {
+          "id": 1789685409233,
+          "sender": "user",
+          "text": "teste2",
+          "createdAt": "2026-09-17T22:50:09.232Z"
+        },
+        {
+          "id": 1789685409235,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T22:50:09.233Z"
+        },
+        {
+          "id": 1789686405747,
+          "sender": "user",
+          "text": "ok",
+          "createdAt": "2026-09-17T23:06:45.746Z"
+        },
+        {
+          "id": 1789686405748,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T23:06:45.746Z"
+        }
+      ]
+    },
+    {
+      "id": 1789686314892,
+      "userId": 4,
+      "userName": "Usuário",
+      "email": "4@alugaki.local",
+      "subject": "Dúvida do usuário",
+      "status": "in_progress",
+      "createdAt": "2026-09-17T23:05:14.892Z",
+      "updatedAt": "2026-10-01T03:23:13.938Z",
+      "messages": [
+        {
+          "id": 1789686314893,
+          "sender": "user",
+          "text": "Como cancelar uma reserva?",
+          "createdAt": "2026-09-17T23:05:14.892Z"
+        },
+        {
+          "id": 1789686314895,
+          "sender": "bot",
+          "text": "Para cancelar uma reserva, acesse a área de reservas do seu perfil. Se a solicitação for feita com antecedência, o valor pode ser reembolsado conforme a política do anúncio.",
+          "createdAt": "2026-09-17T23:05:14.893Z"
+        },
+        {
+          "id": 1789686326223,
+          "sender": "user",
+          "text": "ok",
+          "createdAt": "2026-09-17T23:05:26.222Z"
+        },
+        {
+          "id": 1789686326224,
+          "sender": "bot",
+          "text": "Entendi. Nossa equipe pode te ajudar com isso. Se sua dúvida persistir, o suporte humano poderá responder em seguida.",
+          "createdAt": "2026-09-17T23:05:26.222Z"
+        },
+        {
+          "id": 1789686390616,
+          "sender": "support",
+          "text": "teste",
+          "createdAt": "2026-09-17T23:06:30.616Z"
+        },
+        {
+          "id": 1790824019533,
+          "sender": "user",
+          "text": "Como faço para cancelar uma reserva?",
+          "createdAt": "2026-10-01T03:06:59.532Z"
+        },
+        {
+          "id": 1790824019534,
+          "sender": "bot",
+          "text": "Para cancelar uma reserva, acesse a área de reservas do seu perfil. Se a solicitação for feita com antecedência, o valor pode ser reembolsado conforme a política do anúncio.",
+          "createdAt": "2026-10-01T03:06:59.532Z"
+        },
+        {
+          "id": 1790824757195,
+          "sender": "user",
+          "text": "Como faço para cancelar uma reserva?",
+          "createdAt": "2026-10-01T03:19:17.194Z"
+        },
+        {
+          "id": 1790824757196,
+          "sender": "bot",
+          "text": "Para cancelar uma reserva, acesse a área de reservas do seu perfil. Se a solicitação for feita com antecedência, o valor pode ser reembolsado conforme a política do anúncio.",
+          "createdAt": "2026-10-01T03:19:17.194Z"
+        },
+        {
+          "id": 1790824993939,
+          "sender": "user",
+          "text": "Como faço para cancelar uma reserva?",
+          "createdAt": "2026-10-01T03:23:13.938Z"
+        },
+        {
+          "id": 1790824993940,
+          "sender": "bot",
+          "text": "Para cancelar uma reserva, acesse a área de reservas do seu perfil. Se a solicitação for feita com antecedência, o valor pode ser reembolsado conforme a política do anúncio.",
+          "createdAt": "2026-10-01T03:23:13.938Z"
+        }
+      ]
+    },
+    {
+      "id": 1790823003876,
+      "userId": 9,
+      "userName": "Usuário",
+      "email": "9@alugaki.local",
+      "subject": "Dúvida sobre cancelamento",
+      "status": "open",
+      "createdAt": "2026-10-01T02:50:03.876Z",
+      "updatedAt": "2026-10-01T02:50:03.876Z",
+      "messages": [
+        {
+          "id": 1790823003877,
+          "sender": "user",
+          "text": "Como faço para cancelar uma reserva?",
+          "createdAt": "2026-10-01T02:50:03.876Z"
+        },
+        {
+          "id": 1790823003878,
+          "sender": "bot",
+          "text": "Para cancelar uma reserva, acesse a área de reservas do seu perfil. Se a solicitação for feita com antecedência, o valor pode ser reembolsado conforme a política do anúncio.",
+          "createdAt": "2026-10-01T02:50:03.876Z"
+        }
+      ]
     }
   ]
 }

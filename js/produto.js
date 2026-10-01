@@ -8,12 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalendar();
   initPriceTabs();
   
-  // Atualiza link do checkout com o ID correto
+  // Atualiza link do checkout com o ID correto e datas
   const urlParams = new URLSearchParams(window.location.search);
   const productId = urlParams.get('id') || '3';
   const ctaBtn = document.querySelector('.booking-cta a');
   if (ctaBtn) {
-    ctaBtn.href = `checkout.html?id=${productId}`;
+    ctaBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!window.selectedStart || !window.selectedEnd) {
+        alert('Por favor, selecione as datas de retirada e devolução no calendário.');
+        return;
+      }
+      
+      const startIso = window.selectedStart.toISOString().split('T')[0];
+      const endIso = window.selectedEnd.toISOString().split('T')[0];
+      
+      window.location.href = `checkout.html?product_id=${productId}&start=${startIso}&end=${endIso}`;
+    });
   }
 
   loadProductDetails(productId);
@@ -250,6 +261,8 @@ function initCalendar() {
       }
     }
     renderCalendar();
+    window.selectedStart = selectedStart;
+    window.selectedEnd = selectedEnd;
   }
 
   function formatDate(date) {

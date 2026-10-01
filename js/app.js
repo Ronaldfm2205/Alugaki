@@ -1,3 +1,11 @@
+
+// Theme Manager
+(function() {
+  const savedTheme = localStorage.getItem('alugaki_theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
 /* ============================================
    ALUGAKI — Global App Initialization
    Shared logic across all pages

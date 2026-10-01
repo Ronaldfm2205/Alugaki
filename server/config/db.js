@@ -1,28 +1,24 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-// Verifica se estamos rodando localmente no Docker (DATABASE_URL pode ter db ou localhost)
-const isLocal = process.env.DATABASE_URL && 
-               (process.env.DATABASE_URL.includes('localhost') || process.env.DATABASE_URL.includes('@db:5432'));
+const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:password@localhost:5432/alugaki_db';
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ...(isLocal ? {} : {
-    ssl: {
-      rejectUnauthorized: false
-    }
-  })
+  connectionString,
+  max: 10,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 5000,
 });
 
-// Testa a conexão ao iniciar
 pool.connect((err, client, release) => {
   if (err) {
-    return console.error('Erro ao conectar no banco de dados (Supabase):', err.stack);
+    return console.error('Erro ao conectar no PostgreSQL local:', err.stack);
   }
-  console.log('✅ Conectado ao banco de dados Supabase PostgreSQL com sucesso!');
+  console.log('✅ Conectado ao PostgreSQL local com Docker com sucesso!');
   release();
 });
 
 module.exports = {
   query: (text, params) => pool.query(text, params),
+  pool,
 };

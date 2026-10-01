@@ -57,6 +57,10 @@
                 <option value="festas">Festas</option>
                 <option value="eletrodomesticos">Eletrodomésticos</option>
                 <option value="jardinagem">Jardinagem</option>
+                <option value="vestuario">Vestuário e Fantasias</option>
+                <option value="camping">Camping e Aventura</option>
+                <option value="fotografia">Fotografia e Vídeo</option>
+                <option value="bebes">Bebês e Crianças</option>
               </select>
             </div>
 
@@ -87,7 +91,17 @@
           </fieldset>
 
           <!-- Seção: Fotos (Oculta para Edição) -->
-          <fieldset class="form-section" style="display:none;">
+          <fieldset class="form-section">
+            <legend>Fotos do Item</legend>
+            <p class="section-hint">Edite as fotos do seu anúncio. Você pode adicionar até 5 fotos.</p>
+            <div class="photo-upload-container">
+              <label class="photo-upload-box" for="item-photos">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Clique para enviar fotos (PNG, JPG)</span>
+              </label>
+              <input type="file" id="item-photos" accept="image/png, image/jpeg" multiple style="display: none;">
+              <div class="photo-preview-list" id="photo-preview-list"></div>
+            </div>
           </fieldset>
 
           <!-- Seção: Localização -->

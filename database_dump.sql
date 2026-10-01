@@ -14,6 +14,9 @@ CREATE TABLE IF NOT EXISTS users (
   rating FLOAT DEFAULT 0,
   review_count INT DEFAULT 0,
   badges JSONB DEFAULT '[]',
+  role VARCHAR(50) DEFAULT 'user',
+  avatar_url TEXT,
+  addresses JSONB DEFAULT '[]',
   reset_token VARCHAR(255),
   reset_token_expires TIMESTAMP
 );

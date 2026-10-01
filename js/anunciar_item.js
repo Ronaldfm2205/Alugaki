@@ -91,8 +91,8 @@ function initFormSubmit() {
       pricePerDay: parseFloat(document.getElementById('item-price').value),
       condition: document.getElementById('item-condition').value,
       location: document.getElementById('item-location').value,
-      // For mock purposes we just use the first image dataURL, 
-      // in reality we would upload to Supabase Storage.
+      // Para fins de demo, usamos a primeira imagem em dataURL.
+      // O armazenamento real é feito pelo banco local em Docker e pelos uploads do backend.
       images: uploadedPhotos.map(p => p.url)
     };
 

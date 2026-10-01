@@ -24,7 +24,9 @@
         <a href="busca.html">Explorar</a>
         <a href="index.html#como-funciona">Como Funciona</a>
         <a href="anunciar_item.html">Anunciar Item</a>
-      </nav>
+      
+              
+            </nav>
       <div class="header-icons">
         <button class="header-icon-btn" aria-label="Favoritos">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -59,6 +61,14 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
               Segurança
             </button>
+            <button class="profile-nav-item" data-tab="tab-alugueis">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"></path><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>
+              Meus Aluguéis
+            </button>
+              <button class="profile-nav-item" data-tab="tab-preferencias">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Preferências
+              </button>
           </nav>
         </aside>
 
@@ -178,8 +188,35 @@
             </form>
           </section>
 
-        </div>
-      </div>
+          <!-- TAB: MEUS ALUGUÉIS -->
+          <section id="tab-alugueis" class="profile-tab" style="display: none;">
+            <h2 class="tab-title">Meus Aluguéis</h2>
+            <p style="color: var(--on-surface-variant); margin-bottom: 24px;">Acompanhe suas reservas e gerencie a retirada e devolução.</p>
+            
+            <div class="bookings-grid" id="bookings-list">
+              <p style="color:var(--outline);">Carregando...</p>
+            </div>
+          </section>
+
+            <!-- TAB: PREFERÊNCIAS -->
+            <section id="tab-preferencias" class="profile-tab" style="display: none;">
+              <h2 class="tab-title">Preferências</h2>
+              <p>Gerencie suas configurações de exibição da plataforma ALUGAKI.</p>
+              
+              <div class="theme-toggle-wrapper">
+                <div>
+                  <h3 style="margin-bottom: 4px;">Tema Escuro</h3>
+                  <p style="color: var(--on-surface-variant); font-size: 14px;">Ativar paleta roxa e preta</p>
+                </div>
+                <label class="theme-switch">
+                  <input type="checkbox" id="theme-toggle">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </section>
+
+
+        </div></div>
     </div>
   </main>
 

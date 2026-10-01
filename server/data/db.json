@@ -259,6 +259,56 @@
       "includes": ["2 baterias", "Carregador rápido", "Maleta", "Bits variados"],
       "badges": [],
       "ownerId": 1
+    },
+    {
+      "id": 10001,
+      "title": "Bicicleta Teste",
+      "description": "Bicicleta leve para uso urbano e passeio, sem esforço em deslocamentos curtos.",
+      "category": "esportes",
+      "categoryLabel": "Esportes",
+      "pricePerDay": 45,
+      "pricePerWeek": 270,
+      "weeklyDiscount": 15,
+      "location": "Centro, SP",
+      "distance": 3.1,
+      "rating": 4.8,
+      "reviewCount": 4,
+      "rentals": 5,
+      "condition": "bom",
+      "images": ["assets/images/bicicleta_eletrica.png"],
+      "specs": {
+        "Material": "Alumínio",
+        "Marcha": "7 velocidades",
+        "Peso": "12 kg"
+      },
+      "includes": ["Cadeado", "Capacete"],
+      "badges": [],
+      "ownerId": 1789680883580
+    },
+    {
+      "id": 10002,
+      "title": "Furadeira Teste",
+      "description": "Furadeira compacta para pequenos reparos domésticos e projetos de bricolagem.",
+      "category": "ferramentas",
+      "categoryLabel": "Ferramentas",
+      "pricePerDay": 35,
+      "pricePerWeek": 210,
+      "weeklyDiscount": 15,
+      "location": "Vila Mariana, SP",
+      "distance": 4.4,
+      "rating": 4.6,
+      "reviewCount": 3,
+      "rentals": 4,
+      "condition": "como-novo",
+      "images": ["assets/images/serra_circular.png"],
+      "specs": {
+        "Potência": "650 W",
+        "Velocidade": "2800 RPM",
+        "Peso": "2.4 kg"
+      },
+      "includes": ["Brocas", "Maleta"],
+      "badges": [],
+      "ownerId": 1789680883314
     }
   ],
   "users": [

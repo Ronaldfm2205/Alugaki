@@ -14,7 +14,7 @@ const pool = new Pool({
 async function migrate() {
   const client = await pool.connect();
   try {
-    console.log('Iniciando migração para o Supabase...');
+    console.log('Iniciando migração do banco local PostgreSQL...');
 
     // 1. Criar Tabelas
     await client.query(`
@@ -26,7 +26,12 @@ async function migrate() {
         member_since VARCHAR(50),
         rating FLOAT DEFAULT 0,
         review_count INT DEFAULT 0,
-        badges JSONB DEFAULT '[]'
+        badges JSONB DEFAULT '[]',
+        role VARCHAR(50) DEFAULT 'user',
+        avatar_url TEXT,
+        addresses JSONB DEFAULT '[]',
+        reset_token VARCHAR(255),
+        reset_token_expires TIMESTAMP
       );
     `);
     console.log('Tabela users criada.');

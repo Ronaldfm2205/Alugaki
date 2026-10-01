@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Não precisamos iniciar initPhotoUpload pois a edição de fotos está oculta no MVP
+  initPhotoUpload();
   initFormSubmit();
   initLocationFeatures();
   
@@ -38,6 +38,17 @@ async function loadProductData(id) {
     document.getElementById('item-price').value = p.price_per_day || '';
     document.getElementById('item-condition').value = p.condition || '';
     document.getElementById('item-location').value = p.location || '';
+    
+    if (p.images && p.images.length > 0) {
+      p.images.forEach(img => {
+        if (typeof img === 'string') {
+          uploadedPhotos.push({ url: img, isExisting: true });
+        } else {
+          uploadedPhotos.push({ url: img.url, isExisting: true });
+        }
+      });
+      renderPreviews();
+    }
   } catch (err) {
     console.error(err);
     alert('Erro ao carregar dados do anúncio.');
@@ -113,7 +124,8 @@ function initFormSubmit() {
       description: document.getElementById('item-description').value,
       pricePerDay: parseFloat(document.getElementById('item-price').value),
       condition: document.getElementById('item-condition').value,
-      location: document.getElementById('item-location').value
+      location: document.getElementById('item-location').value,
+      images: uploadedPhotos.map(p => p.url)
     };
 
     submitBtn.innerHTML = `
