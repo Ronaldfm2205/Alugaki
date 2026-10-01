@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnForgot.textContent = 'Enviando...';
         btnForgot.disabled = true;
 
-        const response = await fetch('/api/auth/forgot-password', {
+        const response = await fetch('/api/users/forgot-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email })
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnReset.textContent = 'Redefinindo...';
         btnReset.disabled = true;
 
-        const response = await fetch('/api/auth/reset-password', {
+        const response = await fetch('/api/users/reset-password', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token: tokenValue, newPassword })

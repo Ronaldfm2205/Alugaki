@@ -91,7 +91,8 @@ function initContaForm(user) {
       
       if(typeof showToast === 'function') showToast('Dados atualizados com sucesso!', 'success');
     } catch (error) {
-      if(typeof showToast === 'function') showToast('Erro ao atualizar dados.', 'error');
+      const msg = error.message ? error.message : 'Erro ao atualizar dados.';
+      if(typeof showToast === 'function') showToast(msg, 'error');
     } finally {
       btn.disabled = false;
       btn.textContent = 'Salvar Alterações';

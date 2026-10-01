@@ -24,8 +24,11 @@ const api = {
    */
   getHeaders(endpoint = '') {
     const headers = { 'Content-Type': 'application/json' };
-    const isAuthEndpoint = typeof endpoint === 'string' && endpoint.startsWith('/auth/');
-    if (isAuthEndpoint) {
+    // Only skip token for public auth endpoints (login, register, google)
+    // Protected auth endpoints like /auth/profile NEED the token
+    const publicAuthEndpoints = ['/auth/login', '/auth/register', '/auth/google'];
+    const isPublicAuth = publicAuthEndpoints.some(ep => endpoint === ep);
+    if (isPublicAuth) {
       return headers;
     }
 
@@ -47,14 +50,16 @@ const api = {
   async checkResponse(response) {
     if (response.status === 401) {
       const url = response.url || '';
-      const isAuthRequest = url.includes('/api/auth/');
+      // Allow /api/auth/login, /api/auth/register, /api/auth/google to pass through 401 errors for wrong passwords
+      // But /api/auth/profile is a protected route, so it should force logout on 401
+      const isPublicAuthRequest = url.includes('/api/auth/login') || url.includes('/api/auth/register') || url.includes('/api/auth/google');
 
-      if (!isAuthRequest) {
+      if (!isPublicAuthRequest) {
         console.warn('Token expired or invalid. Forcing logout.');
         localStorage.removeItem('alugaki_user');
         window.location.href = 'login.html?expired=true';
       }
-      throw new Error('Unauthorized');
+      throw new Error('Sessão expirada ou não autorizada. Faça login novamente.');
     }
     if (!response.ok) {
       // Tentar extrair a mensagem de erro do backend, se houver
@@ -149,12 +154,20 @@ const api = {
     featured() { return api.get('/products/featured'); },
   },
 
-  // ── Auth Endpoints ──
+  // ── Auth Endpoints (public) ──
   auth: {
     login(email, password) { return api.post('/auth/login', { email, password }); },
     register(data) { return api.post('/auth/register', data); },
     googleLogin(data) { return api.post('/auth/google', data); },
-    updateProfile(data) { return api.put('/auth/profile', data); },
+    // Backward compat — redirects to users
+    updateProfile(data) { return api.put('/users/profile', data); },
+  },
+
+  // ── Users Endpoints (protected) ──
+  users: {
+    updateProfile(data) { return api.put('/users/profile', data); },
+    forgotPassword(email) { return api.post('/users/forgot-password', { email }); },
+    resetPassword(data) { return api.post('/users/reset-password', data); },
   },
 
   // ── Support Endpoints ──

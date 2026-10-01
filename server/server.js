@@ -13,6 +13,7 @@ const authRouter = require('./routes/auth');
 const bookingsRouter = require('./routes/bookings');
 const categoriesRouter = require('./routes/categories');
 const supportRouter = require('./routes/support');
+const usersRouter = require('./routes/users');
 
 const app = express();
 const preferredPort = Number(process.env.PORT || 3000);
@@ -85,6 +86,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/bookings', bookingsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/support', supportRouter);
+app.use('/api/users', usersRouter);
 
 // ── Fallback: serve index.html for non-API routes ──
 app.get('*', (req, res) => {
